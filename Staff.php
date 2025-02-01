@@ -1,3 +1,57 @@
+<?php
+// Check if the form is submitted via POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get form data
+    $fullName = isset($_POST['fullName']) ? trim($_POST['fullName']) : '';
+    $email = isset($_POST['email']) ? trim($_POST['email']) : '';
+    $role = isset($_POST['role']) ? trim($_POST['role']) : '';
+    $password = isset($_POST['password']) ? $_POST['password'] : '';
+    $phoneNumber = isset($_POST['PhoneNumber']) ? trim($_POST['PhoneNumber']) : '';
+    $address = isset($_POST['Address']) ? trim($_POST['Address']) : '';
+
+    // Validate: Ensure all fields are filled
+    if (empty($fullName) || empty($email) || empty($role) || empty($password) || empty($phoneNumber) || empty($address)) {
+        echo json_encode(["status" => "error", "message" => "All fields are required!"]);
+        exit;
+    }
+
+    // Validate: Check if the email is valid
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo json_encode(["status" => "error", "message" => "Invalid email format!"]);
+        exit;
+    }
+
+    // Hash the password before storing it
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    // Prepare data for the database or API
+    $staffData = array(
+        "full_name" => $fullName,
+        "email" => $email,
+        "role" => $role,
+        "password" => $hashedPassword,
+        "phone_number" => $phoneNumber,
+        "address" => $address
+    );
+
+    // Here you would typically insert data into a database. For now, let's mock success.
+    // Replace the following lines with database insertion or API integration.
+    $success = true; // Simulating a successful operation
+
+    if ($success) {
+        // Return success message
+        echo json_encode(["status" => "success", "message" => "Staff member added successfully!"]);
+    } else {
+        // Return error message if something goes wrong
+        echo json_encode(["status" => "error", "message" => "Failed to add staff member."]);
+    }
+}
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

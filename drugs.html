@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Drugs</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Search Drugs</h1>
+        <nav>
+            <a href="index.html">Home</a>
+        </nav>
+    </header>
+    <section>
+        <input type="text" id="search" placeholder="Enter drug name...">
+        <button onclick="searchDrug()">Search</button>
+        <div id="results"></div>
+    </section>
+    <script>
+        function searchDrug() {
+            let searchQuery = document.getElementById("search").value;
+            document.getElementById("results").innerHTML = "Results for: " + searchQuery;
+        }
+    </script>
+</body>
+</html>

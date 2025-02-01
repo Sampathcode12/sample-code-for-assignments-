@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tender Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Tender Management</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="warehouse.html">Manage Stock</a>
+            <a href="tender.html">Manage Tenders</a>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Submit Tender Proposal</h2>
+        <form id="tenderForm">
+            <label>Supplier Name:</label>
+            <input type="text" id="supplierName" required>
+
+            <label>Drug Name:</label>
+            <input type="text" id="drugName" required>
+
+            <label>Bid Price:</label>
+            <input type="number" id="bidPrice" required>
+
+            <button type="submit">Submit Tender</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Active Tenders</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Supplier Name</th>
+                    <th>Drug Name</th>
+                    <th>Bid Price</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="tenderTable">
+                <!-- Tender data will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </section>
+
+    <script>
+        document.getElementById("tenderForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let supplierName = document.getElementById("supplierName").value;
+            let drugName = document.getElementById("drugName").value;
+            let bidPrice = document.getElementById("bidPrice").value;
+
+            let newRow = `<tr><td>${supplierName}</td><td>${drugName}</td><td>${bidPrice}</td><td>Pending</td></tr>`;
+            document.getElementById("tenderTable").innerHTML += newRow;
+
+            document.getElementById("tenderForm").reset();
+        });
+    </script>
+</body>
+</html>

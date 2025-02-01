@@ -1,4 +1,4 @@
-/* General Page Styles */
+/* === General Page Styles === */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -7,15 +7,19 @@ body {
     text-align: center;
 }
 
-/* Header Styles */
+/* === Header & Navigation === */
 header {
     background-color: #0056b3;
     color: white;
     padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 nav {
-    margin-top: 10px;
+    flex-grow: 1;
+    text-align: center;
 }
 
 nav a {
@@ -32,61 +36,30 @@ nav a:hover {
     background-color: #003d80;
 }
 
-/* Sections */
-section {
-    max-width: 800px;
-    margin: 20px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px #ccc;
+/* === User Profile Icon === */
+.user-profile {
+    margin-right: 20px;
 }
 
-/* Forms */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px;
-}
-
-input, select, button {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-button {
-    background-color: #0056b3;
-    color: white;
-    border: none;
+.user-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid white;
     cursor: pointer;
-    font-weight: bold;
 }
 
-button:hover {
-    background-color: #003d80;
+/* === Welcome Section (Home Page) === */
+.welcome {
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px #ccc;
+    margin: 20px auto;
+    width: 80%;
+    border-radius: 10px;
 }
 
-/* Tables */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-}
-
-th {
-    background-color: #0056b3;
-    color: white;
-}
-
-/* Feature Cards */
+/* === Features Section (Home Page) === */
 .features {
     display: flex;
     flex-wrap: wrap;
@@ -119,7 +92,83 @@ th {
     background-color: #003d80;
 }
 
-/* Footer */
+/* === Forms (Supplier Registration, Orders, Stock Management, etc.) === */
+section {
+    max-width: 800px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #ccc;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #ccc;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+input[type="text"], input[type="email"], input[type="password"], select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 12px;
+    background-color: #0056b3;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #003d80;
+}
+
+/* === Success/Message Box === */
+.message {
+    margin-top: 20px;
+    font-size: 16px;
+    color: green;
+    font-weight: bold;
+}
+
+/* === Tables (Warehouse Stock, Orders, Tenders) === */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #0056b3;
+    color: white;
+}
+
+/* === Footer === */
 footer {
     background-color: #0056b3;
     color: white;
@@ -127,7 +176,11 @@ footer {
     margin-top: 20px;
 }
 
-/* Responsive Design */
+footer p {
+    margin: 0;
+}
+
+/* === Responsive Design === */
 @media (max-width: 768px) {
     .features {
         flex-direction: column;
@@ -135,6 +188,15 @@ footer {
     }
 
     section {
+        width: 90%;
+    }
+
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    form {
         width: 90%;
     }
 }

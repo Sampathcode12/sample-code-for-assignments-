@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // API endpoint (replace with your actual .NET API URL)
-    $apiUrl = "https://your-dotnet-api.com/api/auth/login";
+    $apiUrl = "http://localhost:5268/api/Staff/Addstaff";
 
     // Prepare the data to send
     $postData = json_encode([

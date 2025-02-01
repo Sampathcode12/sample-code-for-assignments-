@@ -1,103 +1,166 @@
-<?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get the form data
-    $companyName = $_POST['company_name'];
-    $password = $_POST['password'];
-    $contactPerson = $_POST['contact_person'];
-    $licenseNo = $_POST['license_no'];
-    $email = $_POST['email'];
-    $companyAddress = $_POST['company_Address'];
+<?php 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Create an array with form data
+  
+    $name = $_POST['name'] ?? ''; 
+    $email = $_POST['email'] ?? ''; 
+    $password = $_POST['password'] ?? ''; 
+    $supplied_item = $_POST['supplied_item'] ?? ''; 
+    $address = $_POST['address'] ?? ''; 
+  
+
     $data = array(
-        "company_name" => $companyName,
-        "password" => $password,
-        "contact_person" => $contactPerson,
-        "license_no" => $licenseNo,
-        "email" => $email,
-        "company_address" => $companyAddress
+        
+      
+        "NAME" => $name,
+        "EMAIL" => $email,
+        "PASSWORD" => $password,
+        "SUPPLIEDITEM" => $supplied_item,
+        "ADDRESS" => $address
+
+       
     );
 
-    // Convert the array to JSON
-    $jsonData = json_encode($data);
 
-    // Initialize cURL
-    $ch = curl_init('https://your-api-url.com/api/supplier/register'); // Replace with your .NET API URL
+    echo"<script> console.log('playload Data:".json_encode($data)."')</script>";
 
-    // Set the cURL options
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        'Content-Type: application/json',
-        'Content-Length: ' . strlen($jsonData)
-    ));
+    $ch = curl_init();
+
+    $url = "http://localhost:5268/api/Supplier/AddSupplier";
+
+    curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-    // Execute the cURL request
+    $payload = json_encode($data);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json'
+    ));
+
     $response = curl_exec($ch);
 
-    // Check if the request was successful
-    if ($response === false) {
-        echo "Error: " . curl_error($ch);
+    if (curl_errno($ch)) {
+        echo 'Error: ' . curl_error($ch);
     } else {
-        // Decode the JSON response from the API
-        $responseData = json_decode($response, true);
-
-        // Handle the response (e.g., success or error message)
-        if (isset($responseData['status']) && $responseData['status'] == 'success') {
-            echo "Registration successful!";
-        } else {
-            echo "Error: " . (isset($responseData['message']) ? $responseData['message'] : 'Unknown error');
-        }
+        echo "<script>alert('Staff Member Successfully Added');</script>";
     }
-
-    // Close the cURL session
     curl_close($ch);
 }
 ?>
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supplier Registration</title>
     <link rel="stylesheet" href="styles.css">
+    <title>Supplier Form</title>
+    <!-- <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #007BFF;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .submit-btn {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+    </style> -->
 </head>
 <body>
-    <header>
-        <h1>Supplier Registration</h1>
-        <nav>
-            <a href="index.html">Home</a>
-        </nav>
-    </header>
-    <section>
-        <form action="register_process.php" method="POST">
-            <label>Company Name:</label>
-            <input type="text" name="company_name" required>
-
-            <label>Password:</label>
-            <input type="password" name="password" required>
-
-            <label>Contact Person:</label>
-            <input type="text" name="contact_person" required>
-
-            <label>License Number:</label>
-            <input type="text" name="license_no" required>
-
-            <label>Email:</label>
-            <input type="email" name="email" required>
-
+    <div class="form-container">
+        <h2>Supplier Registration</h2>
+        <section class="welcome">
+        <form method="post">
+         
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter Name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter Email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter Password" required>
+            </div>
+            <div class="form-group">
+                <label for="supplied_item">Supplied Item</label>
+                <input type="text" id="supplied_item" name="supplied_item" placeholder="Enter Supplied Item" required>
+            </div>
            
-            <label>Company Address:</label>
-            <input type="text" name="company_Address" required>
-
-            <button type="submit">Register</button>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <textarea id="address" name="address" placeholder="Enter Address" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
         </form>
+    </div>
     </section>
 </body>
 </html>

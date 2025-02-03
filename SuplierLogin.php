@@ -6,44 +6,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // API endpoint (replace with your actual .NET API URL)
-    $apiUrl = "http://localhost:5268/api/Staff/Addstaff";
+    $apiUrl = "http://localhost:5268/api/Supplier/Suplierlogin";
 
     // Prepare the data to send
     $postData = json_encode([
-        "email" => $email,
-        "password" => $password
+        "EMAIL" => $email,
+        "PASSWORD" => $password
     ]);
 
     // Initialize cURL session
-    $ch = curl_init($apiUrl);
+    $ch = curl_init();
 
     // Set cURL options
+    curl_setopt($ch, CURLOPT_URL, $apiUrl);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        'Content-Type: application/json'
+        'Content-Type: application/json',
+        'Content-Length: ' . strlen($postData)
     ]);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
 
     // Execute cURL request
-    $response = curl_exec($ch);
-    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $result = curl_exec($ch);
+
+    // Check for errors
+    if (curl_errno($ch)) {
+        echo 'cURL Error: ' . curl_error($ch);
+    } else {
+        echo "Raw API Response: " . $result;
+        $response = json_decode($result, true);
+    }
+
     curl_close($ch);
 
-    // Decode API response
-    $result = json_decode($response, true);
-
-    if ($httpCode == 200 && isset($result['token'])) {
-        // Store token and redirect
-        $_SESSION['user_token'] = $result['token'];
-        header("Location: dashboard.php");
-        exit();
+    // Validate API response
+    if ($response && isset($response['statusCode']) && isset($response['statusMessage'])) {
+        if ($response['statusCode'] == 200) {
+            $_SESSION['email'] = $email;
+            echo "<script>alert('Login successful');</script>";
+            echo "<script>window.location.href='dashboard.php';</script>";
+            exit();
+        } else {
+            echo "<script>alert('Login failed: " . $response['statusMessage'] . "');</script>";
+            echo "<script>window.location.href='login.php';</script>";
+            exit();
+        }
     } else {
-        // Display error message
-        $errorMessage = isset($result['message']) ? $result['message'] : "Login failed. Please try again.";
+        echo "Invalid response from server. Please try again.";
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

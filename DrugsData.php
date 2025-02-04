@@ -24,7 +24,7 @@
         </tr>
         <tbody>
             <?php
-            include 'fetch_drugs.php';  
+            include 'fetch_Data.php';  
             $drugsData = fetchDrugsData();
             
             if (isset($drugsData['data'])) {

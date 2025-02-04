@@ -200,3 +200,49 @@ footer p {
         width: 90%;
     }
 }
+
+
+/* === Styled Table for Drugs List === */
+.sTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    box-shadow: 0px 0px 10px #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.sTable th, .sTable td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+.sTable th {
+    background-color: #0056b3;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.sTable tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Light gray for even rows */
+}
+
+.sTable tbody tr:hover {
+    background-color: #f1f1f1; /* Highlight row on hover */
+    transition: 0.3s;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    .sTable th, .sTable td {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+
+
+

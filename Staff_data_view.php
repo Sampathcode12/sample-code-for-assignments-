@@ -27,7 +27,7 @@
         </thead>
         <tbody>
             <?php
-            include 'fetch_drugs.php'; // Include PHP file with API call function
+            include 'fetch_Data.php'; // Include PHP file with API call function
             $StaffData = fetchStaffData();
 
             if (isset($StaffData['data'])) {

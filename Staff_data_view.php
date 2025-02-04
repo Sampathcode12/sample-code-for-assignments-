@@ -4,57 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Staff List</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">  <!-- External CSS File -->
 </head>
 <body>
-    <h2>Staff List</h2>
+
+<header>
+        <h2>Staff List</h2>
+    </header>
+  
+  
 
     <table class="sTable">
         <thead>
             <tr>
-                <th>STAFF_ID</th>
-                <th>FIRSTNAME</th>
-                <th>LASTNAME</th>
-                <th>EMAIL</th>
-                <th>PASSWORD</th>
-                <th>ADDRESS</th>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Password</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            include 'fetch_drugs.php'; // PHP file to fetch supplier data
-            $suppliersData = fetchStaffData();  
-            
-            if (!empty($suppliersData)) {
-                foreach ($suppliersData as $supplier) {
+            include 'fetch_drugs.php'; // Include PHP file with API call function
+            $StaffData = fetchStaffData();
+
+            if (isset($StaffData['data'])) {
+                foreach ($StaffData['data'] as $Staff) {
                     echo "<tr>
-                            <td>" . htmlspecialchars($supplier['STAFF_ID']) . "</td>
-                            <td>" . htmlspecialchars($supplier['FIRSTNAME']) . "</td>
-                            <td>" . htmlspecialchars($supplier['LASTNAME']) . "</td>
-                            <td>" . htmlspecialchars($supplier['EMAIL']) . "</td>
-                            <td>" . htmlspecialchars($supplier['PASSWORD']) . "</td>
-                            <td>" . htmlspecialchars($supplier['ADDRESS']) . "</td>
-                          </tr>";
+                        <td>{$Staff['stafF_ID']}</td>
+                        <td>{$Staff['firstname']}</td>
+                        <td>{$Staff['lastname']}</td>
+                        <td>{$Staff['email']}</td>                         
+                        <td>{$Staff['address']}</td>
+                        <td>{$Staff['password']}</td>
+                      </tr>";
                 }
             } else {
-                echo "<tr><td colspan='5'>No suppliers found.</td></tr>";
+                echo "<tr><td colspan='6'>No suppliers found or invalid response.</td></tr>";
             }
             ?>
         </tbody>
     </table>
+
 </body>
 </html>

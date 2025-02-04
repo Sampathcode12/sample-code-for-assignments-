@@ -1,6 +1,6 @@
 <?php
 // API Base URL (Replace with your actual .NET API URL)
-$api_url = "http://localhost:5268/api/Drugs/AddDrugs"; 
+$api_url = "http://localhost:5268/api/Drugs/GetAllDrugs"; 
 
 // Function to send API requests
 function callAPI($method, $url, $data = null) {

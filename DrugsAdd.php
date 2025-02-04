@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="date" name="expiry" id="expiry" required>
 
             <button type="submit" name="add_drug">Add Drug</button>
-            <button type="submit" name="update_drug">Update Drug</button>
+            <!-- <button type="submit" name="update_drug">Update Drug</button> -->
         </form>
     </section>
 </body>

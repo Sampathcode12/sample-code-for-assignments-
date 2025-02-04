@@ -1,6 +1,6 @@
 <?php
 // API Base URL (Replace with your actual .NET API URL)
-$api_url = "http://your-dotnet-api-url/api/drugs"; 
+$api_url = "http://localhost:5268/api/Drugs/AddDrugs"; 
 
 // Function to send API requests
 function callAPI($method, $url, $data = null) {
@@ -34,7 +34,7 @@ function callAPI($method, $url, $data = null) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['add_drug'])) {
         $data = [
-            "DRUG_ID" => $_POST['ID'],
+            // "DRUG_ID" => $_POST['ID'],
             "DRUG_NAME" => $_POST['name'],
             "DRUG_TYPE" => $_POST['type'],
             "DRUG_COMPANY" => $_POST['company'],
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($_POST['update_drug'])) {
         $data = [
-            "DRUG_ID" => $_POST['ID'],
+            // "DRUG_ID" => $_POST['ID'],
             "DRUG_NAME" => $_POST['name'],
             "DRUG_TYPE" => $_POST['type'],
             "DRUG_COMPANY" => $_POST['company'],
@@ -82,8 +82,8 @@ $drugs = callAPI("GET", "$api_url/all");
     <section>
         <h2>Add / Update Drug</h2>
         <form method="post">
-            <label for="ID">Drug ID</label>
-            <input type="text" name="ID" id="ID" required>
+            <!-- <label for="ID">Drug ID</label>
+            <input type="text" name="ID" id="ID" required> -->
 
             <label for="name">Drug Name</label>
             <input type="text" name="name" id="name" required>

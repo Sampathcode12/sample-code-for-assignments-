@@ -38,7 +38,7 @@
     <section class="features">
         
 
-        <!-- <div class="feature">
+        <div class="feature">
             <h3>Tender Add</h3>
             <p>Search for available drugs and place orders easily.</p>
             <a href="Add_tender.php" class="btn">Staff Manage</a>
@@ -54,7 +54,7 @@
             <h3>Update tender Information</h3>
             <p>Submit and track tenders for pharmaceutical supplies.</p>
             <a href="#" class="btn">Manage Tenders</a>
-        </div> -->
+        </div>
 
         <div class="feature">
             <h3>view all denders</h3>
@@ -64,6 +64,11 @@
 
 
         
+        <div class="feature">
+            <h3>view all denders request</h3>
+            <p>Staff can register and participate in tenders.</p>
+            <a href="#" class="btn">Register Now</a>
+        </div>
       
     </section>
 

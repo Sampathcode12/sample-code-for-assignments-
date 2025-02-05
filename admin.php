@@ -53,7 +53,7 @@
         <div class="feature">
             <h3>Tender Management</h3>
             <p>Submit and track tenders for pharmaceutical supplies.</p>
-            <a href="tender.html" class="btn">Manage Tenders</a>
+            <a href="tender_manage.php" class="btn">Manage Tenders</a>
         </div>
 
         <div class="feature">

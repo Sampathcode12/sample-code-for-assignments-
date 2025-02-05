@@ -1,48 +1,54 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supplier List</title>
-    <link rel="stylesheet" href="styles.css">  <!-- External CSS File -->
+    <title>Supplier Search</title>
+    <link rel="stylesheet" href="styles.css">  <!-- Link to external CSS -->
 </head>
 <body>
 
-<header>
-        <h2>Supplier List</h2>
-    </header>
+    <h2> Supplier data vew</h2>
 
+  
+  
     <table class="sTable">
-        <thead>
-            <tr>
-            <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Supplied Item</th>
-                <th>Address</th>
-            </tr>
-        </thead>
-        <tbody>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Supplied Item</th>
+                    <th>Address</th>
+                    <th>Password</th>
+                </tr>
+            </thead>
+            <tbody>
             <?php
             include 'fetch_Data.php'; // Include PHP file with API call function
-            $suppliersData = fetchSuppliersData();
+            $SuplierData = fetchSuppliersData();
 
-            if (isset($suppliersData['data'])) {
-                foreach ($suppliersData['data'] as $supplier) {
+            if (isset($SuplierData['data'])) {
+                foreach ($SuplierData['data'] as $Suplier) {
                     echo "<tr>
-                        <td>{$supplier['suP_ID']}</td>
-                            <td>{$supplier['name']}</td>
-                            <td>{$supplier['email']}</td>
-                            <td>{$supplier['supplieditem']}</td>
-                         
-                            <td>{$supplier['address']}</td>
-                          </tr>";
+                        <td>{$Suplier['suP_ID']}</td>
+                        <td>{$Suplier['name']}</td>
+                        <td>{$Suplier['email']}</td>
+                        <td>{$Suplier['password']}</td>                         
+                        <td>{$Suplier['supplieditem']}</td>
+                        <td>{$Suplier['address']}</td>
+                      </tr>";
                 }
+
+
             } else {
-                echo "<tr><td colspan='4'>No suppliers found or invalid response.</td></tr>";
+                echo "<tr><td colspan='6'>No suppliers found or invalid response.</td></tr>";
             }
             ?>
         </tbody>
     </table>
+
 </body>
 </html>

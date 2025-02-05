@@ -50,6 +50,28 @@ function fetchStaffData() {
 
 
 function fetchSuppliersData() {
+    $url = 'http://localhost:5268/api/Supplier/GetAllSuppliers'; // Update with your actual API URL
+
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    
+    $result = curl_exec($ch);
+
+    if (curl_errno($ch)) {
+        return ['error' => 'Error: ' . curl_error($ch)];
+    }
+
+    $response = json_decode($result, true);
+
+    if ($response && is_array($response)) {
+        return ['data' => $response];
+    } else {
+        return ['error' => 'No suppliers found or invalid response.'];
+    }
+
+    curl_close($ch);
+}
+function fetchSuppliersSearchData() {
     $url = 'http://localhost:5268/api/Supplier/GetAllSuplier'; // Update with your actual API URL
 
     $ch = curl_init($url);
@@ -71,7 +93,6 @@ function fetchSuppliersData() {
 
     curl_close($ch);
 }
-
 
 
 

@@ -37,7 +37,7 @@
                         <td>{$Tender['description']}</td>
                         <td>{$Tender['deadline']}</td>                         
                          
-}
+
                       </tr>";
                 }
             } else {
@@ -46,6 +46,9 @@
             ?>
         </tbody>
     </table>
+
+    <button onclick="window.location.href='Apliy_Tender.php';">Go to Another Page</button>
+
 
 </body>
 </html>

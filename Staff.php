@@ -65,8 +65,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <header>
         <h2>Add a New Staff Member</h2>
         <nav>
-            <a href="admin.html">Home</a>
-            <a href="login.php">Login</a>
+            <!-- <a href="admin.html">Home</a>
+            <a href="login.php">Login</a> -->
         </nav>
     </header>
 

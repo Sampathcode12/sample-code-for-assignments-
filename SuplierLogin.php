@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // API endpoint (replace with your actual .NET API URL)
-    $apiUrl = "http://localhost:5268/api/Supplier/Suplierlogin";
+    $apiUrl = "http://localhost:5268/api/Supplier/SupplierLogin";
 
     // Prepare the data to send
     $postData = json_encode([
@@ -45,11 +45,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($response['statusCode'] == 200) {
             $_SESSION['email'] = $email;
             echo "<script>alert('Login successful');</script>";
-            echo "<script>window.location.href='dashboard.php';</script>";
+            echo "<script>window.location.href='Suplier_dashboardt.php';</script>";
             exit();
         } else {
             echo "<script>alert('Login failed: " . $response['statusMessage'] . "');</script>";
-            echo "<script>window.location.href='login.php';</script>";
+            echo "<script>window.location.href='SuplierLogin.php';</script>";
             exit();
         }
     } else {
@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <section>
         <h2>Login</h2>
         <?php if (isset($errorMessage)) { echo "<p class='message'>$errorMessage</p>"; } ?>
-        <form action="login.php" method="POST">
+        <form action=" " method="POST">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
             
@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             <button type="submit">Login</button>
         </form>
-        <p>Don't have an account? <a href="register.html">Register here</a></p>
+        <p>Don't have an account? <a href="SUplier_register.php">Register here</a></p>
     </section>
 </body>
 </html>

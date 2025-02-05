@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPC - Home</title>
+    <title>Staff - Home</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
@@ -11,20 +11,20 @@
     <header>
         <h1> (SPC)</h1>
         <nav>
-            <a href="index.html">Home</a>
-            <a href="register.html">Supplier Registration</a>
-            <a href="drugs.html">Search Drugs</a>
-            <a href="orders.html">Orders</a>
-            <a href="warehouse.php">Manage Stock</a>
+            <a href="admin.php">Home</a>
+            <a href="Staff_Add.php">Staff Add</a>
+            <a href="Staff_manage.php">Staff Manage</a>
+            <a href="#">Search Drugs</a>
+            <a href="#">Orders</a>
+            <a href="#">Manage Stock</a>
             <!-- <a href="DrugsAdd.php">DrugsAdd</a> -->
-            <a href="DrugsData.php">DrugsData</a>
-            <a href="tender.html">Manage Tenders</a>
-            <a href="coustomer_register.html">Coustomer</a>
-            <a href="staffLogin.php">staff login</a>
-            <a href="SuplierLogin.php">Suplier login</a>
+       
+            <a href="#">Manage Tenders</a>
+
+        
         </nav>
         <div class="user-profile">
-            <a href="admin.html">
+            <a href="admin.php">
                 <img src="profile-icon.png" alt="User Profile">
             </a>
         </div>
@@ -36,22 +36,18 @@
     </section>
 
     <section class="features">
-        <div class="feature">
-            <h3>Supplier Registration</h3>
-            <p>Suppliers can register and participate in tenders.</p>
-            <a href="register.php" class="btn">Register Now</a>
-        </div>
+        
 
         <div class="feature">
-            <h3>Drug Search & Orders</h3>
+            <h3>Staff_manage</h3>
             <p>Search for available drugs and place orders easily.</p>
-            <a href="drugs.html" class="btn">Search Drugs</a>
+            <a href="Staff_manage.php" class="btn">Staff Manage</a>
         </div>
 
         <div class="feature">
-            <h3>Warehouse Stock Management</h3>
+            <h3>Suplier Manage</h3>
             <p>Manage stock levels for manufactured and purchased drugs.</p>
-            <a href="warehouse.php" class="btn">Manage Stock</a>
+            <a href="Suplier_Manage.php" class="btn">Manage Suplier</a>
         </div>
 
         <div class="feature">
@@ -66,18 +62,9 @@
             <a href="Staff.php" class="btn">Register Now</a>
         </div>
 
-        <div class="feature">
-            <h3>Coustomer Registration</h3>
-            <p>Coustomer can register and participate in tenders.</p>
-            <a href="coustomer_register.php" class="btn">Register Now</a>
-        </div>
 
         
-        <div class="feature">
-            <h3>Coustomer Registration</h3>
-            <p>Coustomer can register and participate in tenders.</p>
-            <a href="search_suppliers.php" class="btn">Register Now</a>
-        </div>
+      
     </section>
 
     <footer>

@@ -20,9 +20,10 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Supplied Item</th>
-                    <th>Address</th>
                     <th>Password</th>
+                    <th>Licen Number</th>
+                    <th>Phone Number</th>
+                    <th>Address</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,9 +38,15 @@
                         <td>{$Suplier['name']}</td>
                         <td>{$Suplier['email']}</td>
                         <td>{$Suplier['password']}</td>                         
-                        <td>{$Suplier['supplieditem']}</td>
+                        <td>{$Suplier['licen_Number']}</td>
+                         <td>{$Suplier['phone_Number']}</td>
                         <td>{$Suplier['address']}</td>
                       </tr>";
+
+
+                  
+                  
+                
                 }
 
 

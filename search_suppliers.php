@@ -48,20 +48,16 @@ function searchSupplier($searchTerm) {
             if (isset($supplierData['error'])) {
                 echo "<tr><td colspan='7' class='error-msg'>{$supplierData['error']}</td></tr>";
             } elseif (isset($supplierData['data'])) {
-                foreach ($supplierData['data'] as $supplier) {
+                foreach ($supplierData['data'] as $Suplier) {
                     echo "<tr>
-                            <td>{$supplier['suP_ID']}</td>
-                            <td>{$supplier['name']}</td>
-                            <td>{$supplier['email']}</td>
-                            <td>{$supplier['password']}</td>
-                            <td>{$supplier['supplieditem']}</td>
-                            <td>{$supplier['address']}</td>
-                            <td>
-                                <form method='POST' action='search_suppliers.php' style='display:inline;' onsubmit='return confirm(\"Are you sure?\");'>
-                                    <input type='hidden' name='supplierId' value='{$supplier['suP_ID']}'>
-                                    <button type='submit'>Delete</button>
-                                </form>
-                            </td>
+                           <td>{$Suplier['suP_ID']}</td>
+                        <td>{$Suplier['name']}</td>
+                        <td>{$Suplier['email']}</td>
+                        <td>{$Suplier['password']}</td>                         
+                        <td>{$Suplier['licen_Number']}</td>
+                         <td>{$Suplier['phone_Number']}</td>
+                        <td>{$Suplier['address']}</td>
+                     
                           </tr>";
                 }
             }
@@ -69,3 +65,11 @@ function searchSupplier($searchTerm) {
         ?>
     </tbody>
 </table>
+
+
+<!-- <td>
+                                <form method='POST' action='search_suppliers.php' style='display:inline;' onsubmit='return confirm(\"Are you sure?\");'>
+                                    <input type='hidden' name='supplierId' value='{$Suplier['suP_ID']}'>
+                                    <button type='submit'>Delete</button>
+                                </form>
+                            </td> -->

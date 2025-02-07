@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <section>
         <h2>Login</h2>
         <?php if (isset($errorMessage)) { echo "<p class='message'>$errorMessage</p>"; } ?>
-        <form action="login.php" method="POST">
+        <form  method="POST">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
             

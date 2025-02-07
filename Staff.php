@@ -1,28 +1,28 @@
 <?php 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    $Staff_Id = $_POST['StaffId'] ?? ''; 
     $firstname = $_POST['FIRSTNAME'] ?? ''; 
     $lastname = $_POST['LASTNAME'] ?? ''; 
     $email = $_POST['EMAIL'] ?? ''; 
     $password = $_POST['PASSWORD'] ?? ''; 
     $address = $_POST['ADDRESS'] ?? ''; 
-  
+    $phone = $_POST['Phone_number'] ?? ''; 
+    $jobRole = $_POST['Job_Roll'] ?? ''; 
 
     $data = array(
-        
+        "Staff_id"=>$Staff_Id,
         "firstname" => $firstname,
         "lastname" => $lastname,
         "address" => $address,
         "password" => $password,
-        "email" => $email
-       
+        "email" => $email,
+        "phone_number" => $phone,
+        "job_role" => $jobRole
     );
 
-
-    echo"<script> console.log('playload Data:".json_encode($data)."')</script>";
+    echo "<script> console.log('Payload Data: " . json_encode($data) . "');</script>";
 
     $ch = curl_init();
-
     $url = "http://localhost:5268/api/Staff/Addstaff";
 
     curl_setopt($ch, CURLOPT_URL, $url);
@@ -47,10 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,48 +54,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Add Staff Member</title>
-
 </head>
 <body>
 
     <header>
         <h2>Add a New Staff Member</h2>
-        <nav>
-            <!-- <a href="admin.html">Home</a>
-            <a href="login.php">Login</a> -->
-        </nav>
     </header>
 
     <section class="welcome">
-    <form action="" method="post">
-        <h1>Staff Registration</h1>
-      
-                
-        <div class="form-group">
-        <label for="">FIRSTNAME</label>
-        <input type="text" name="FIRSTNAME">
-        </div>
+        <form action="" method="post">
+            <h1>Staff Registration</h1>
 
-        <label for="">LASTNAME</label>
-        <input type="text" name="LASTNAME">
-        
-        <label for="">EMAIL</label>
-        <input type="text" name="EMAIL">
-        
-        <label for="">PASSWORD</label>
-        <input type="password" name="PASSWORD">
-        
-        <label for="">ADDRESS</label>
-        <input type="text" name="ADDRESS">
-        
-     
-        
-         <button type="submit" class="submit-btn">Submit</button>
-    </form>
+            <label for="">Staff ID</label>
+            <input type="text" name="StaffId" required>
 
-    <div class="submit-btn" id="responseMessage"></div>
+            <div class="form-group">
+                <label for="">FIRSTNAME</label>
+                <input type="text" name="FIRSTNAME" required>
+           
+
+            <label for="">LASTNAME</label>
+            <input type="text" name="LASTNAME" required>
+            
+            <label for="">EMAIL</label>
+            <input type="email" name="EMAIL" required>
+            
+            <label for="">PASSWORD</label>
+            <input type="password" name="PASSWORD" required>
+            
+            <label for="">ADDRESS</label>
+            <input type="text" name="ADDRESS" required>
+
+            <label for="">Phone Number</label>
+            <input type="text" name="Phone_number" required>
+
+            <label for="">Job Role</label>
+            <select name="Job_Roll" required>
+                <option value="">-- Select Job Role --</option>
+                <option value="Admin">Admin</option>
+                <option value="Manager">Manager</option>
+                <option value="Trainer">Trainer</option>
+                <option value="Receptionist">Receptionist</option>
+            </select>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+
+        <div class="submit-btn" id="responseMessage"></div>
     </section>
-
 
 </body>
 </html>

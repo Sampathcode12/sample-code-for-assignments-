@@ -23,7 +23,7 @@ function searchSupplier($searchTerm) {
 }
 ?>
 <form method="GET">
-    <input type="text" name="search" placeholder="Search Suppliers" required>
+    <input type="text" name="search" placeholder="Search Suppliers ID /Name Or Email" required>
     <button type="submit">Search</button>
     <link rel="stylesheet" href="styles.css"> 
 </form>

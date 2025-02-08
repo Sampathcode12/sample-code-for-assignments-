@@ -2,22 +2,20 @@
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
 
-    // API endpoint (replace with your actual .NET API URL)
+    // API endpoint
     $apiUrl = "http://localhost:5268/api/Staff/StaffLogin";
 
-    // Prepare the data to send
+    // Prepare the data
     $postData = json_encode([
         "EMAIL" => $email,
         "PASSWORD" => $password
     ]);
 
-    // Initialize cURL session
+    // Initialize cURL
     $ch = curl_init();
-
-    // Set cURL options
     curl_setopt($ch, CURLOPT_URL, $apiUrl);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
@@ -29,35 +27,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Execute cURL request
     $result = curl_exec($ch);
-
-    // Check for errors
-    if (curl_errno($ch)) {
-        echo 'cURL Error: ' . curl_error($ch);
-    } else {
-        echo "Raw API Response: " . $result;
-        $response = json_decode($result, true);
-    }
-
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE); // Get HTTP response code
     curl_close($ch);
 
-    // Validate API response
-    if ($response && isset($response['statusCode']) && isset($response['statusMessage'])) {
+    // Check if API returned a valid JSON response
+    $response = json_decode($result, true);
+
+    if ($httpCode == 200 && isset($response['statusCode'])) {
         if ($response['statusCode'] == 200) {
+            // Extract job role from response
+            $jobRole = isset($response['jobRole']) ? $response['jobRole'] : 'Unknown';
+
+            // Store in session
             $_SESSION['email'] = $email;
-            echo "<script>alert('Login successful');</script>";
-            echo "<script>window.location.href='dashboard.php';</script>";
+            $_SESSION['job_role'] = $jobRole;
+
+            echo "<script>alert('Login successful. Your role: $jobRole');</script>";
+            echo "<script>window.location.href='Staff_Home.php';</script>";
             exit();
         } else {
-            echo "<script>alert('Login failed: " . $response['statusMessage'] . "');</script>";
-            echo "<script>window.location.href='login.php';</script>";
+            echo "<script>alert('Login failed: " . htmlspecialchars($response['statusMessage'] ?? 'Unknown error') . "');</script>";
+            echo "<script>window.location.href='staffLogin.php';</script>";
             exit();
         }
     } else {
-        echo "Invalid response from server. Please try again.";
+        echo "<script>alert('Server error. Please try again later.');</script>";
     }
+
+    // Debugging - Uncomment to see API response during development
+    /*
+    echo "<pre>";
+    print_r($response);
+    echo "</pre>";
+    exit();
+    */
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -70,8 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <section>
         <h2>Login</h2>
-        <?php if (isset($errorMessage)) { echo "<p class='message'>$errorMessage</p>"; } ?>
-        <form  method="POST">
+        <form method="POST">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
             

@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
             } 
 
-            elseif ($jobRole === 'Stock_keeper') {
+            elseif ($jobRole === 'StockKeeper') {
                 header("Location: Stock_keeper.php");
                 exit();
                 

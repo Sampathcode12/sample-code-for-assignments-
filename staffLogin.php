@@ -2,8 +2,8 @@
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
     // API endpoint
     $apiUrl = "http://localhost:5268/api/Staff/StaffLogin";
@@ -27,42 +27,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Execute cURL request
     $result = curl_exec($ch);
-    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE); // Get HTTP response code
     curl_close($ch);
 
-    // Check if API returned a valid JSON response
-    $response = json_decode($result, true);
+    if ($result) {
+        $response = json_decode($result, true);
 
-    if ($httpCode == 200 && isset($response['statusCode'])) {
-        if ($response['statusCode'] == 200) {
+        if (isset($response['statusCode']) && $response['statusCode'] == 200) {
             // Extract job role from response
-            $jobRole = isset($response['jobRole']) ? $response['jobRole'] : 'Unknown';
+            $jobRole = $response['jobRole'] ?? 'Unknown';
 
             // Store in session
             $_SESSION['email'] = $email;
             $_SESSION['job_role'] = $jobRole;
 
-            echo "<script>alert('Login successful. Your role: $jobRole');</script>";
-            echo "<script>window.location.href='Staff_Home.php';</script>";
-            exit();
+            // Redirect based on job role
+            if ($jobRole === 'Admin') {
+                header("Location: admin.php");
+                exit();
+            } elseif ($jobRole === 'Manager') {
+                header("Location: manager_home.php");
+                exit();
+            } else {
+                header("Location: staff_home.php");
+                exit();
+            }
         } else {
-            echo "<script>alert('Login failed: " . htmlspecialchars($response['statusMessage'] ?? 'Unknown error') . "');</script>";
+            echo "<script>alert('Login failed: " . ($response['statusMessage'] ?? 'Unknown error') . "');</script>";
             echo "<script>window.location.href='staffLogin.php';</script>";
             exit();
         }
     } else {
-        echo "<script>alert('Server error. Please try again later.');</script>";
+        echo "<script>alert('Server error. Please try again.');</script>";
     }
-
-    // Debugging - Uncomment to see API response during development
-    /*
-    echo "<pre>";
-    print_r($response);
-    echo "</pre>";
-    exit();
-    */
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

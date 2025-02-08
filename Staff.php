@@ -7,10 +7,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['PASSWORD'] ?? ''; 
     $address = $_POST['ADDRESS'] ?? ''; 
     $phone = $_POST['Phone_number'] ?? ''; 
-    $jobRole = $_POST['Job_Roll'] ?? ''; 
+    $jobRole = $_POST['Job_Role'] ?? ''; 
 
     $data = array(
-        "Staff_id"=>$Staff_Id,
+        "Staff_id" => $Staff_Id,
         "firstname" => $firstname,
         "lastname" => $lastname,
         "address" => $address,
@@ -20,30 +20,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         "job_role" => $jobRole
     );
 
-    echo "<script> console.log('Payload Data: " . json_encode($data) . "');</script>";
+    $apiUrl = "http://localhost:5268/api/Staff/Addstaff";
 
     $ch = curl_init();
-    $url = "http://localhost:5268/api/Staff/Addstaff";
-
-    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_URL, $apiUrl);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-    $payload = json_encode($data);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         'Content-Type: application/json'
     ));
 
     $response = curl_exec($ch);
-
-    if (curl_errno($ch)) {
-        echo 'Error: ' . curl_error($ch);
-    } else {
-        echo "<script>alert('Staff Member Successfully Added');</script>";
-    }
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE); 
     curl_close($ch);
+
+    if ($httpCode == 200) {
+        echo "<script>alert('Staff Member Successfully Added');</script>";
+        echo "<script>window.location.href='staffLogin.php';</script>";
+    } elseif ($httpCode == 409) {
+        echo "<script>alert('Error: Staff ID or Email already exists!');</script>";
+    } else {
+        echo "<script>alert('Error: Unable to add staff. Please try again later.');</script>";
+    }
 }
 ?>
 
@@ -93,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <option value="">-- Select Job Role --</option>
                 <option value="Admin">Admin</option>
                 <option value="Manager">Manager</option>
-                <option value="Trainer">Trainer</option>
+                <option value="Stock_keeper">Stock ?keeper</option>
                 <option value="Receptionist">Receptionist</option>
             </select>
             </div>

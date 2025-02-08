@@ -47,7 +47,8 @@
         </tbody>
     </table>
 
-    <button onclick="window.location.href='Apliy_Tender.php';">Go to Another Page</button>
+    <button onclick="window.location.href='Apliy_Tender.php';">Apply</button>
+    <button onclick="window.history.back();">Back</button>
 
 
 </body>

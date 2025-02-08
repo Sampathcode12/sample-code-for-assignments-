@@ -44,10 +44,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($jobRole === 'Admin') {
                 header("Location: admin.php");
                 exit();
+
             } elseif ($jobRole === 'Manager') {
                 header("Location: manager_home.php");
                 exit();
-            } else {
+                
+            } 
+
+            elseif ($jobRole === 'Stock_keeper') {
+                header("Location: Stock_keeper.php");
+                exit();
+                
+            } 
+            
+            else {
                 header("Location: staff_home.php");
                 exit();
             }

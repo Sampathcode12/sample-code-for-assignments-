@@ -1,3 +1,10 @@
+
+<?php
+
+include"Staff_header.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,28 +14,7 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
-<body>
-    <header>
-        <h1> (SPC)</h1>
-        <nav>
-            <a href="admin.php">Home</a>
-            <a href="Staff_Add.php">Staff Add</a>
-            <a href="Staff_manage.php">Staff Manage</a>
-            <a href="#">Search Drugs</a>
-            <a href="#">Orders</a>
-            <a href="#">Manage Stock</a>
-            <!-- <a href="DrugsAdd.php">DrugsAdd</a> -->
-       
-            <a href="#">Manage Tenders</a>
-
-        
-        </nav>
-        <div class="user-profile">
-            <a href="admin.php">
-                <img src="profile-icon.png" alt="User Profile">
-            </a>
-        </div>
-    </header>
+<!--  -->
 
     <section class="welcome">
         <h2>Welcome to SPC</h2>
@@ -56,11 +42,11 @@
             <a href="tender_manage.php" class="btn">Manage Tenders</a>
         </div>
 
-        <div class="feature">
+        <!-- <div class="feature">
             <h3>Staff Registration</h3>
             <p>Staff can register and participate in tenders.</p>
             <a href="Staff.php" class="btn">Register Now</a>
-        </div>
+        </div> -->
 
 
         

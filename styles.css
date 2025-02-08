@@ -17,6 +17,65 @@ header {
     align-items: center;
 }
 
+/* Header Styling */
+/* .header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} */
+ /* Logout Button Style */
+.btn-logout {
+    background-color: #f44336; /* Red color */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-logout:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}
+
+.btn-logout:focus {
+    outline: none;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+
+.header h2 {
+    margin: 0;
+}
+
+.user-info {
+    font-size: 16px;
+}
+
+.btn-logout {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn-logout:hover {
+    background-color: #c9302c;
+}
+
+
 nav {
     flex-grow: 1;
     text-align: center;

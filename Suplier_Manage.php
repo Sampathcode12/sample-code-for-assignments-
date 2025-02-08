@@ -41,19 +41,19 @@
       
 
         <div class="feature">
-            <h3>Delete member</h3>
+            <h3>Delete Suplier member</h3>
             <p>Manage stock levels for manufactured and purchased drugs.</p>
-            <a href="#" class="btn">Manage Stock</a>
+            <a href="supler_delete.php" class="btn">Delete</a>
         </div>
 
         <div class="feature">
-            <h3>Update Member Information</h3>
+            <h3>Ckack supler Member Information</h3>
             <p>Submit and track tenders for pharmaceutical supplies.</p>
-            <a href="#" class="btn">Manage Tenders</a>
-        </div>
+            <a href="search_suppliers.php" class="btn">Chack</a>
+        </div> 
 
         <div class="feature">
-            <h3>All member Data</h3>
+            <h3>All Suplier member Data</h3>
             <p>Staff can register and participate in tenders.</p>
             <a href="Suplier_Data_view.php" class="btn">click</a>
         </div>

@@ -1,34 +1,18 @@
+<?php include('supplier_header.php'); ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff - Home</title>
+    <title>Suplier - Home</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <h1> (SPC)</h1>
-        <nav>
-            <a href="admin.php">Home</a>
-            <a href="Staff_Add.php">Staff Add</a>
-            <a href="Staff_manage.php">Staff Manage</a>
-            <a href="#">Search Drugs</a>
-            <a href="#">Orders</a>
-            <a href="#">Manage Stock</a>
-            <!-- <a href="DrugsAdd.php">DrugsAdd</a> -->
-       
-            <a href="#">Manage Tenders</a>
-
-        
-        </nav>
-        <div class="user-profile">
-            <a href="admin.php">
-                <img src="profile-icon.png" alt="User Profile">
-            </a>
-        </div>
-    </header>
+   
 
     <section class="welcome">
         <h2>Welcome to SPC</h2>
@@ -48,18 +32,18 @@
             <h3>Tender delete</h3>
             <p>Manage stock levels for manufactured and purchased drugs.</p>
             <a href="#" class="btn">Manage Suplier</a>
-        </div>
+        </div> -->
 
         <div class="feature">
-            <h3>Update tender Information</h3>
+            <h3>Appply tender</h3>
             <p>Submit and track tenders for pharmaceutical supplies.</p>
-            <a href="#" class="btn">Manage Tenders</a>
-        </div> -->
+            <a href="#" class="btn">Apply</a>
+        </div> 
 
         <div class="feature">
             <h3>view all denders</h3>
             <p>Staff can register and participate in tenders.</p>
-            <a href="tender_view.php" class="btn">Register Now</a>
+            <a href="tender_view.php" class="btn">view</a>
         </div>
 
 

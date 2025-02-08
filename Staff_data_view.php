@@ -23,6 +23,8 @@
                 <th>Email</th>
                 <th>Address</th>
                 <th>Password</th>
+                <th>Phone Number</th>
+                <th>Job type</th>
             </tr>
         </thead>
         <tbody>
@@ -39,6 +41,8 @@
                         <td>{$Staff['email']}</td>                         
                         <td>{$Staff['address']}</td>
                         <td>{$Staff['password']}</td>
+                         <td>{$Staff['phonE_NUMBER']}</td>
+                        <td>{$Staff['joB_ROLE']}</td>
                       </tr>";
                 }
             } else {

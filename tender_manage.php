@@ -40,7 +40,7 @@ include"Staff_header.php";
         <div class="feature">
             <h3>Update tender Information</h3>
             <p>Submit and track tenders for pharmaceutical supplies.</p>
-            <a href="#" class="btn">Manage Tenders</a>
+            <a href="Tender_update.php" class="btn">Manage Tenders</a>
         </div>
 
         <div class="feature">
@@ -54,7 +54,7 @@ include"Staff_header.php";
         <div class="feature">
             <h3>view all denders request</h3>
             <p>Staff can register and participate in tenders.</p>
-            <a href="#" class="btn">Register Now</a>
+            <a href="tenderAplicationView.php" class="btn">Register Now</a>
         </div>
       
     </section>

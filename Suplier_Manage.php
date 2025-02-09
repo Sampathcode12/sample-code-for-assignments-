@@ -57,7 +57,11 @@
             <p>Staff can register and participate in tenders.</p>
             <a href="Suplier_Data_view.php" class="btn">click</a>
         </div>
-
+        <div class="feature">
+            <h3>All Suplier member Update</h3>
+            <p>Staff can register and participate in tenders.</p>
+            <a href="update_supplier.php" class="btn">Update</a>
+        </div>
 
         
       

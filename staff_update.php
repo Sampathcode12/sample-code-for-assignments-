@@ -5,33 +5,38 @@ $statusColor = "red"; // Default error color
 // Handle POST request for updating supplier
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get data from the form
-    $supplierId = $_POST['supplier_id'] ?? '';
-    $supplierName = $_POST['supplier_name'] ?? '';
-    $supplierEmail = $_POST['supplier_email'] ?? '';
-    $supplierAddress = $_POST['supplier_address'] ?? '';
-    $supplierPassword = $_POST['supplier_password'] ?? '';
-    $supplierLicenNumber = $_POST['supplier_licen_number'] ?? '';
-    $supplierPhoneNumber = $_POST['supplier_Phone_number'] ?? '';
+    $StaffId = $_POST['Staff_id'] ?? '';
+    $FirstName = $_POST['firstName'] ?? '';
+    $LastName = $_POST['LastName'] ?? '';
+    $Email = $_POST['Email'] ?? '';
+    $Password = $_POST['Password'] ?? '';
+    $Address = $_POST['Address'] ?? '';
+    $PhoneNumber = $_POST['PhoneNumber'] ?? '';
+    $JoRole = $_POST['JobRole'] ?? '';
 
     // Validate required fields
-    if (!empty($supplierId) && !empty($supplierName) && !empty($supplierEmail) && !empty($supplierAddress) && !empty($supplierPassword) && !empty($supplierLicenNumber)) {
+    if (!empty($StaffId) )  {
         
         // Prepare data to send to API
         $data = [
-            'SUP_ID' => $supplierId,
-            'NAME' => $supplierName,
-            'EMAIL' => $supplierEmail,
-            'ADDRESS' => $supplierAddress,
-            'PASSWORD' => $supplierPassword,
-            'Licen_Number' => $supplierLicenNumber,
-            'phone_Number' => $supplierPhoneNumber
+            'Staff_id' => $StaffId,
+            'firstname' => $FirstName,
+            'lastname' => $LastName,
+            'Email' => $Email,
+            'password' => $Password,
+            'address' => $Address,
+            'phone_number' => $PhoneNumber,
+            'job_role' => $JoRole
+
         ];
+
+
 
         // Convert data to JSON format
         $jsonData = json_encode($data);
 
         // API URL (Replace with actual API endpoint)
-        $url = "http://localhost:5268/api/Supplier/UpdateSupplier/$supplierId";
+        $url = "http://localhost:5268/api/Staff/UpdateStaff/$StaffId";
 
         // Initialize cURL session
         $ch = curl_init($url);
@@ -57,14 +62,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $result = json_decode($response, true);
 
             if ($httpCode == 200 && isset($result['statusCode']) && $result['statusCode'] == 200) {
-                $message = "Supplier updated successfully.";
+                $message = "Staff Member updated successfully.";
                 $statusColor = "green";
             } else {
                 $message = "An error occurred: " . json_encode($result);
             }
         }
     } else {
-        $message = "Please enter all required supplier details.";
+        $message = "Please enter all required Staff details.";
     }
 }
 ?>
@@ -80,14 +85,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <h2>Update Supplier</h2>
     <form method="POST" action="">
-        <input type="number" name="supplier_id" placeholder="Enter Supplier ID" required><br>
-        <input type="text" name="supplier_name" placeholder="Enter Supplier Name" required><br>
-        <input type="email" name="supplier_email" placeholder="Enter Supplier Email" required><br>
-        <input type="text" name="supplier_address" placeholder="Enter Supplier Address" required><br>
-        <input type="password" name="supplier_password" placeholder="Enter Password" required><br>
-        <input type="text" name="supplier_licen_number" placeholder="Enter License Number" required><br>
-        <input type="number" name="supplier_Phone_number" placeholder="Enter Phone Number" required><br>
+        <input type="number" name="Staff_id" placeholder="Enter Staff ID" required><br>
+        <input type="text" name="firstName" placeholder="Enter First Name" required><br>
+        <input type="text" name="LastName" placeholder="Enter Last Name" required><br>
+        <input type="email" name="Email" placeholder="Enter Email" required><br>
+        <input type="password" name="Password" placeholder="Enter Password" required><br>
+        <input type="text" name="Address" placeholder="Enter Addres" required><br>
+        <input type="number" name="PhoneNumber" placeholder="Enter Phone Number" required><br>
+        <input type="text" name="JobRole" placeholder="Enter  Job Role" required><br>
+
         <button type="submit">Update Supplier</button>
+
+      
+
     </form>
 
     <?php if (!empty($message)) : ?>

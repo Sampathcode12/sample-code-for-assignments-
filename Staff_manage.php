@@ -33,7 +33,7 @@
         <div class="feature">
             <h3>Update Member Information</h3>
             <p>Submit and track tenders for pharmaceutical supplies.</p>
-            <a href="#" class="btn">update</a>
+            <a href="staff_update.php" class="btn">update</a>
         </div>
 
         <div class="feature">

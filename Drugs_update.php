@@ -5,33 +5,33 @@ $statusColor = "red"; // Default error color
 // Handle POST request for updating supplier
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get data from the form
-    $supplierId = $_POST['supplier_id'] ?? '';
-    $supplierName = $_POST['supplier_name'] ?? '';
-    $supplierEmail = $_POST['supplier_email'] ?? '';
-    $supplierAddress = $_POST['supplier_address'] ?? '';
-    $supplierPassword = $_POST['supplier_password'] ?? '';
-    $supplierLicenNumber = $_POST['supplier_licen_number'] ?? '';
-    $supplierPhoneNumber = $_POST['supplier_Phone_number'] ?? '';
-
+    $DrugsId = $_POST['Drugs_id'] ?? '';
+    $DrugsName = $_POST['Drugs_name'] ?? '';
+    $DrugsTyep = $_POST['Drugs_Type'] ?? '';
+    $DrugsCompany = $_POST['Drugs_Company'] ?? '';
+    $DrugsPrice = $_POST['Drugs_Price'] ?? '';
+    $DrugsQuantity = $_POST['Drugs_Quantity'] ?? '';
+    $DrugsExpryDate = $_POST['Drugs_expry_date'] ?? '';
     // Validate required fields
-    if (!empty($supplierId) && !empty($supplierName) && !empty($supplierEmail) && !empty($supplierAddress) && !empty($supplierPassword) && !empty($supplierLicenNumber)) {
+    if (!empty($DrugsId)) {
         
         // Prepare data to send to API
         $data = [
-            'SUP_ID' => $supplierId,
-            'NAME' => $supplierName,
-            'EMAIL' => $supplierEmail,
-            'ADDRESS' => $supplierAddress,
-            'PASSWORD' => $supplierPassword,
-            'Licen_Number' => $supplierLicenNumber,
-            'phone_Number' => $supplierPhoneNumber
+            'druG_ID' => $DrugsId,
+            'druG_NAME' => $DrugsName,
+            'druG_TYPE' => $DrugsTyep,
+            'druG_COMPANY' => $DrugsCompany,
+            'druG_PRICE' => $DrugsPrice,
+            'druG_QUANTITY' => $DrugsQuantity,
+            'druG_EXPIRY' => $DrugsExpryDate
+
         ];
 
         // Convert data to JSON format
         $jsonData = json_encode($data);
 
         // API URL (Replace with actual API endpoint)
-        $url = "http://localhost:5268/api/Supplier/UpdateSupplier/$supplierId";
+        $url = "http://localhost:5268/api/Drugs/UpdateDrugs/$DrugsId";
 
         // Initialize cURL session
         $ch = curl_init($url);
@@ -57,14 +57,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $result = json_decode($response, true);
 
             if ($httpCode == 200 && isset($result['statusCode']) && $result['statusCode'] == 200) {
-                $message = "Supplier updated successfully.";
+                $message = "Drugs updated successfully.";
                 $statusColor = "green";
             } else {
                 $message = "An error occurred: " . json_encode($result);
             }
         }
     } else {
-        $message = "Please enter all required supplier details.";
+        $message = "Please enter all required Drugs details.";
     }
 }
 ?>
@@ -74,20 +74,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Supplier</title>
+    <title>Update Stock</title>
 </head>
 <body>
 
-    <h2>Update Supplier</h2>
+    <h2>Update Stock</h2>
     <form method="POST" action="">
-        <input type="number" name="supplier_id" placeholder="Enter Supplier ID" required><br>
-        <input type="text" name="supplier_name" placeholder="Enter Supplier Name" required><br>
-        <input type="email" name="supplier_email" placeholder="Enter Supplier Email" required><br>
-        <input type="text" name="supplier_address" placeholder="Enter Supplier Address" required><br>
-        <input type="password" name="supplier_password" placeholder="Enter Password" required><br>
-        <input type="text" name="supplier_licen_number" placeholder="Enter License Number" required><br>
-        <input type="number" name="supplier_Phone_number" placeholder="Enter Phone Number" required><br>
-        <button type="submit">Update Supplier</button>
+        <input type="number" name="Drugs_id" placeholder="Enter Drugs ID" required><br>
+        <input type="text" name="Drugs_name" placeholder="Enter Drugs Name" required><br>
+        <input type="text" name="Drugs_Type" placeholder="Enter Drugs Type" required><br>
+        <input type="text" name="Drugs_Company" placeholder="Enter Drugs Company" required><br>
+        <input type="number" name="Drugs_Price" placeholder="Enter price" required><br>
+        <input type="text" name="Drugs_Quantity" placeholder="Enter Quantity" required><br>
+        <input type="date" name="Drugs_expry_date" placeholder="Enter expry date" required><br>
+        <button type="submit">Update Drugs</button>
     </form>
 
     <?php if (!empty($message)) : ?>

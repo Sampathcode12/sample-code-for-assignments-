@@ -1,105 +1,176 @@
-<?php
-// Start session to retrieve supplier session data
-session_start();
 
-// Retrieve session values if set
-$supplierName = $_SESSION['supplier_name'] ?? '';
-$supplierEmail = $_SESSION['supplier_email'] ?? '';
+<?php
+// Enable error reporting for debugging
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form inputs
-    $supplier_name = $_POST['supplier_name'] ?? '';
-    $RFnumber = $_POST['tender_ref'] ?? '';
-    $offered_price = $_POST['offered_price'] ?? '';
-    $proposal = $_POST['proposal'] ?? '';  // Updated to match form field
-    $supplier_email = $_POST['supplier_email'] ?? '';
+    // Collect the form data
+    $supplierName = $_POST['SupplierName'] ?? ''; 
+    $supplierEmail = $_POST['SupplierEmail'] ?? ''; 
+    $tenderRef = $_POST['TenderRef'] ?? ''; 
+    $offeredPrice = $_POST['OfferedPrice'] ?? ''; 
+    $proposalText = $_POST['ProposalText'] ?? ''; 
 
-    // Prepare data for API request
+    // Data array to be sent as JSON
     $data = array(
-        "supplierName" => $supplier_name,
-        "tenderRef" => $RFnumber,
-        "offeredPrice" => $offered_price,
-        "proposalDocument" => $proposal,  // Now sending text instead of a file
-        "supplierEmail" => $supplier_email,
+        "SupplierName" => $supplierName,
+        "SupplierEmail" => $supplierEmail,
+        "TenderRef" => $tenderRef,
+        "ProposalText" => $proposalText,
+        "OfferedPrice" => $offeredPrice
     );
 
-    echo "<script>console.log('Payload Data: " . json_encode($data) . "');</script>";
+    // Log the data to the browser console for debugging
+    echo "<script>console.log('Payload Data: " . json_encode($data) . "')</script>";
 
     // Initialize cURL session
     $ch = curl_init();
-    $url = "http://localhost:5268/api/TenderAply/AddTenderProposal";
+    $url = "http://localhost:5268/api/TenderAply/AddTenderProposal"; // Your API endpoint
 
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
-    // Set headers
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        'Content-Type: application/json'
-    ));
-
-    // Execute request
+    // Execute the cURL request
     $response = curl_exec($ch);
 
-    // Check for errors
+    // Check if there was an error
     if (curl_errno($ch)) {
-        echo "<script>alert('Error: " . curl_error($ch) . "');</script>";
+        echo 'Error: ' . curl_error($ch); // Show cURL error
     } else {
-        echo "<script>alert('Tender Applied Successfully');</script>";
+        echo "<script>alert('Tender Proposal Submitted Successfully');</script>";
+       // echo "API Response: " . htmlspecialchars($response); // Show the API response
     }
 
+    // Close the cURL session
     curl_close($ch);
 }
 ?>
+
+<!-- HTML Form with added container class -->
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supplier - Apply for Tender</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+
+    <style>/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Center the form */
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Label Styles */
+.form-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Input and Textarea Styles */
+.form-control {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #28a745;
+    outline: none;
+}
+
+/* Button Styles */
+.btn {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #218838;
+}
+
+/* Additional Styles */
+.mb-3 {
+    margin-bottom: 15px;
+}
+
+textarea.form-control {
+    resize: vertical;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 15px;
+    }
+}
+</style>
 </head>
 <body>
+<div class="container">
+    <form action="" method="post">
+        <div class="mb-3">
+            <label class="form-label">Supplier Name</label>
+            <input type="text" class="form-control" name="SupplierName" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" name="SupplierEmail" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Tender Reference Number</label>
+            <input type="text" class="form-control" name="TenderRef" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Proposal Document (Text)</label>
+            <textarea class="form-control" name="ProposalText" rows="4" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Offered Price</label>
+            <input type="number" class="form-control" name="OfferedPrice" required>
+        </div>
+        <button type="submit" class="btn">Apply for Tender</button>
+    </form>
+</div>
 
-    <div class="container mt-5">
-        <h2 class="text-center">Supplier - Apply for Tender</h2>
-        <form action="" method="post">
-            <!-- Supplier Name (Pre-filled with session data if available) -->
-            <div class="mb-3">
-                <label class="form-label">Supplier Name</label>
-                <input type="text" class="form-control" name="supplier_name" value="<?php echo htmlspecialchars($supplierName); ?>" required>
-            </div>
-            
-            <!-- Tender Reference Number -->
-            <div class="mb-3">
-                <label class="form-label">Tender Reference Number</label>
-                <input type="text" class="form-control" name="tender_ref" required>
-            </div>
-            
-            <!-- Proposal (Text input instead of file upload) -->
-            <div class="mb-3">
-                <label class="form-label">Proposal</label>
-                <textarea class="form-control" name="proposal" rows="5" required></textarea>
-            </div>
-            
-            <!-- Offered Price -->
-            <div class="mb-3">
-                <label class="form-label">Offered Price</label>
-                <input type="number" step="0.01" class="form-control" name="offered_price" required>
-            </div>
-            
-            <!-- Supplier Email (Pre-filled with session data if available) -->
-            <div class="mb-3">
-                <label class="form-label">Supplier Email</label>
-                <input type="email" class="form-control" name="supplier_email" value="<?php echo htmlspecialchars($supplierEmail); ?>" required>
-            </div>
-            
-            <button type="submit" class="btn btn-success">Apply for Tender</button>
-        </form>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+

@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['PASSWORD'] ?? ''; 
     $address = $_POST['ADDRESS'] ?? ''; 
     $phone = $_POST['Phone_number'] ?? ''; 
-    $jobRole = $_POST['Job_Role'] ?? ''; 
+    $jobRole = $_POST['Job_Roll'] ?? ''; 
 
     $data = array(
         "Staff_id" => $Staff_Id,
@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <option value="">-- Select Job Role --</option>
                 <option value="Admin">Admin</option>
                 <option value="Manager">Manager</option>
-                <option value="Stock_keeper">Stock ?keeper</option>
+                <option value="StockKeeper">Stock keeper</option>
                 <option value="Receptionist">Receptionist</option>
             </select>
             </div>

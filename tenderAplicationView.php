@@ -18,7 +18,7 @@
     <table class="sTable">
         <thead>
             <tr>
-            <th>Suplier Id</th>
+            <th>Aplication Id</th>
                 <th>Suplier Name</th>
                 <th>RF Number</th>
                 <th>Offer Price</th>
@@ -37,12 +37,12 @@
             if (isset($TenderAplyData['data'])) {
                 foreach ($TenderAplyData['data'] as $TenderAplication) {
                     echo "<tr>
-                        <td>{$TenderAplication['aplicationID']}</td>
+                        // <td>{$TenderAplication['aplicationID']}</td>
                         <td>{$TenderAplication['supplierName']}</td>
                         <td>{$TenderAplication['tenderRef']}</td>
                         <td>{$TenderAplication['offeredPrice']}</td>
                         <td>{$TenderAplication['supplierEmail']}</td>
-                        <td>{$TenderAplication['proposalDocument']}</td>   
+                        <td>{$TenderAplication['proposalText']}</td>   
                          <td>{$TenderAplication['date']}</td>   
               
                      

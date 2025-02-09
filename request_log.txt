@@ -1,0 +1,5 @@
+{"supplierName":"amara","tenderRef":"100","offeredPrice":22,"proposalDocument":"ww","supplierEmail":"amara@gmail.com"}
+{"supplierName":"amara","tenderRef":"100","offeredPrice":99,"proposalDocument":"uu","supplierEmail":"amara@gmail.com"}
+{"supplierName":"amara","tenderRef":"100","offeredPrice":99,"proposalDocument":"uu","supplierEmail":"amara@gmail.com"}
+{"supplierName":"amara","tenderRef":"100","offeredPrice":99,"proposalDocument":"uu","supplierEmail":"amara@gmail.com"}
+{"supplierName":"amara","tenderRef":"1111","offeredPrice":23,"proposalDocument":"eee","supplierEmail":"amara@gmail.com"}

@@ -42,11 +42,11 @@ include"Staff_header.php";
             <a href="tender_manage.php" class="btn">Manage Tenders</a>
         </div>
 
-        <!-- <div class="feature">
-            <h3>Staff Registration</h3>
+        <div class="feature">
+            <h3>Phamacy Manage</h3>
             <p>Staff can register and participate in tenders.</p>
-            <a href="Staff.php" class="btn">Register Now</a>
-        </div> -->
+            <a href="PhamacyManage.php" class="btn">Manage Phamacy</a>
+        </div>
 
 
         

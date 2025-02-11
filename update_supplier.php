@@ -64,7 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     } else {
-        $message = "Please enter all required supplier details.";
+        $message = "Please enter all required supplier details.
+        ";
     }
 }
 ?>

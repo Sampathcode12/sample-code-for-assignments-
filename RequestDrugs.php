@@ -1,47 +1,55 @@
-<?php
+<?php 
+$responseMessage = ""; // Initialize response message
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pharmacyName = $_POST["pharmacy_name"];
     $pharmacyEmail = $_POST["pharmacy_email"];
     $itemName = $_POST["item_name"];
     $brandName = $_POST["brand_name"];
-    $quantity = $_POST["quantity"];
+    $quantity = (int)$_POST["quantity"];
 
-    // API endpoint for submitting stock requests
-    $url = 'http://localhost:5268/api/PhamacyRequst/AddPharmacyStockRequest';
-
-    // Data to be sent in JSON format
-    $data = json_encode([
+    $data = array(
         "pharmacyName" => $pharmacyName,
         "pharmacyEmail" => $pharmacyEmail,
         "itemName" => $itemName,
         "brandName" => $brandName,
-        "itemQuantity" => (int)$quantity
+        "quantity" => $quantity
+    );
 
- 
-    ]);
+    echo "<script>console.log('Payload Data: " . addslashes(json_encode($data)) . "');</script>";
 
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+echo "";
+
+
+    $ch = curl_init();
+    $url = 'http://localhost:5268/api/PhamacyRequst/AddPharmacyStockRequest'; // Fixed URL
+
+    curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        'Content-Type: application/json',
-        'Content-Length: ' . strlen($data)
-    ]);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-    $result = curl_exec($ch);
+    $payload = json_encode($data);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/json'
+    ));
+
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
     if (curl_errno($ch)) {
         $responseMessage = "Error: " . curl_error($ch);
     } else {
-        $response = json_decode($result, true);
-        if (isset($response["StatusMessage"])) {
-            $responseMessage = $response["StatusMessage"];
+        $decodedResponse = json_decode($response, true);
+        if ($httpCode === 200) {
+            $responseMessage = "Request added successfully.";
+            echo "<script>alert('Request added successfully');</script>";
         } else {
-            $responseMessage = "Stock request submitted successfully!";
+            $responseMessage = "Failed to add request: " . ($decodedResponse['statusMessage'] ?? 'Unknown error');
         }
     }
-
+    
     curl_close($ch);
 }
 ?>
@@ -56,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <h2>Pharmacy Stock Request Form</h2>
-    <form method="POST">
+    <form method="POST" action="">
         <label>Pharmacy Name:</label>
         <input type="text" name="pharmacy_name" required>
 
@@ -66,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label>Item Name:</label>
         <input type="text" name="item_name" required>
 
-        <label>Brand Name:</label> <!-- company Name -->
+        <label>Brand Name:</label> <!-- Company Name -->
         <input type="text" name="brand_name" required>
 
         <label>Quantity:</label>
@@ -75,10 +83,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="submit">Submit Request</button>
     </form>
 
-    <?php
-    if (isset($responseMessage)) {
-        echo "<p class='response-msg'>$responseMessage</p>";
-    }
-    ?>
+    <?php if (!empty($responseMessage)): ?>
+        <p class='response-msg'><?= htmlspecialchars($responseMessage) ?></p>
+    <?php endif; ?>
 </body>
 </html>

@@ -49,7 +49,11 @@ include"Staff_header.php";
         </div>
 
 
-        
+        <div class="feature">
+            <h3>Phamacy Request Manage</h3>
+            <p>Staff can register and participate in tenders.</p>
+            <a href="PhamacyRequestManage.php" class="btn">Manage Phamacy</a>
+        </div>
       
     </section>
 

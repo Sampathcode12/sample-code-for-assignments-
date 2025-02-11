@@ -164,6 +164,74 @@ function fetchTenderPhamacyData() {
     return ['data' => $response];
 }
 
+
+
+function fetchPhamacyRequest() {
+    $url = 'http://localhost:5268/api/PhamacyRequst/GetAllPharmacyRequests'; 
+
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    
+    $result = curl_exec($ch);
+    curl_close($ch);
+
+    if (!$result) {
+        return ['error' => 'Failed to fetch data from API.'];
+    }
+
+    $response = json_decode($result, true);
+
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        return ['error' => 'Invalid JSON response from API.'];
+    }
+
+    return ['data' => $response];
+}
+
+function fetchPhamacyRequestCOnformView() {
+    $url = 'http://localhost:5268/api/PhamacyRequst/GetAllPharmacyRequestsConform'; 
+
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    
+    $result = curl_exec($ch);
+    curl_close($ch);
+
+    if (!$result) {
+        return ['error' => 'Failed to fetch data from API.'];
+    }
+
+    $response = json_decode($result, true);
+
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        return ['error' => 'Invalid JSON response from API.'];
+    }
+
+    return ['data' => $response];
+}
+
+function fetchPhamacyRequestRejectView() {
+    $url = 'http://localhost:5268/api/PhamacyRequst/GetAllPharmacyRequestsReject'; 
+
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    
+    $result = curl_exec($ch);
+    curl_close($ch);
+
+    if (!$result) {
+        return ['error' => 'Failed to fetch data from API.'];
+    }
+
+    $response = json_decode($result, true);
+
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        return ['error' => 'Invalid JSON response from API.'];
+    }
+
+    return ['data' => $response];
+}
+
 ?>
 
 

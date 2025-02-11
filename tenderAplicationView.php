@@ -37,7 +37,7 @@
             if (isset($TenderAplyData['data'])) {
                 foreach ($TenderAplyData['data'] as $TenderAplication) {
                     echo "<tr>
-                        // <td>{$TenderAplication['aplicationID']}</td>
+                        <td>{$TenderAplication['aplicationID']}</td>
                         <td>{$TenderAplication['supplierName']}</td>
                         <td>{$TenderAplication['tenderRef']}</td>
                         <td>{$TenderAplication['offeredPrice']}</td>

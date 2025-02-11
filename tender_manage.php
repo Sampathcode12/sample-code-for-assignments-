@@ -54,7 +54,7 @@ include"Staff_header.php";
         <div class="feature">
             <h3>view all denders request</h3>
             <p>Staff can register and participate in tenders.</p>
-            <a href="tenderAplicationView.php" class="btn">Register Now</a>
+            <a href="AdmintendeAplyrview.php" class="btn">Register Now</a>
         </div>
       
     </section>

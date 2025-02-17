@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <h2> Supplier data vew</h2>
+    <h2> Supplier data view</h2>
 
   
   

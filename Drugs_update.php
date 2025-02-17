@@ -75,6 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Stock</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -88,6 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" name="Drugs_Quantity" placeholder="Enter Quantity" required><br>
         <input type="date" name="Drugs_expry_date" placeholder="Enter expry date" required><br>
         <button type="submit">Update Drugs</button>
+        <button type="button" class="back-btn" onclick="history.back()">← Back</button>
     </form>
 
     <?php if (!empty($message)) : ?>

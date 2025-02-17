@@ -1,3 +1,5 @@
+<?php include "Staff_header.php"; ?>
+
 <?php 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Staff_Id = $_POST['StaffId'] ?? ''; 
@@ -7,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['PASSWORD'] ?? ''; 
     $address = $_POST['ADDRESS'] ?? ''; 
     $phone = $_POST['Phone_number'] ?? ''; 
-    $jobRole = $_POST['Job_Roll'] ?? ''; 
+    $jobRole = $_POST['JobRole'] ?? ''; 
 
     $data = array(
         "Staff_id" => $Staff_Id,
@@ -45,13 +47,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    
     <title>Add Staff Member</title>
 </head>
 <body>
@@ -64,42 +66,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form action="" method="post">
             <h1>Staff Registration</h1>
 
-            <label for="">Staff ID</label>
-            <input type="text" name="StaffId" required>
+            <label for="StaffId">Staff ID</label>
+            <input type="text" name="StaffId" id="StaffId" required>
 
-            <div class="form-group">
-                <label for="">FIRSTNAME</label>
-                <input type="text" name="FIRSTNAME" required>
            
+                <label for="FIRSTNAME">First Name</label>
+                <input type="text" name="FIRSTNAME" id="FIRSTNAME" required>
 
-            <label for="">LASTNAME</label>
-            <input type="text" name="LASTNAME" required>
-            
-            <label for="">EMAIL</label>
-            <input type="email" name="EMAIL" required>
-            
-            <label for="">PASSWORD</label>
-            <input type="password" name="PASSWORD" required>
-            
-            <label for="">ADDRESS</label>
-            <input type="text" name="ADDRESS" required>
+                <label for="LASTNAME">Last Name</label>
+                <input type="text" name="LASTNAME" id="LASTNAME" required>
 
-            <label for="">Phone Number</label>
-            <input type="text" name="Phone_number" required>
+                <label for="EMAIL">Email</label>
+                <input type="email" name="EMAIL" id="EMAIL" required>
 
-            <label for="">Job Role</label>
-            <select name="Job_Roll" required>
-                <option value="">-- Select Job Role --</option>
-                <option value="Admin">Admin</option>
-                <option value="Manager">Manager</option>
-                <option value="StockKeeper">Stock keeper</option>
-                <option value="Receptionist">Receptionist</option>
-            </select>
-            </div>
+                <label for="PASSWORD">Password</label>
+                <input type="password" name="PASSWORD" id="PASSWORD" required>
+
+                <label for="ADDRESS">Address</label>
+                <input type="text" name="ADDRESS" id="ADDRESS" required>
+
+                <label for="Phone_number">Phone Number</label>
+                <input type="text" name="Phone_number" id="Phone_number" required>
+
+                <label for="JobRole">Job Role</label>
+                <select name="JobRole" id="JobRole" required>
+                    <option value="">-- Select Job Role --</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Manager">Manager</option>
+                    <option value="StockKeeper">Stock Keeper</option>
+                    <option value="Receptionist">Receptionist</option>
+                </select>
+         
+
             <button type="submit" class="submit-btn">Submit</button>
+            <button type="button" class="back-btn" onclick="history.back()">← Back</button>
         </form>
 
-        <div class="submit-btn" id="responseMessage"></div>
+        <div class="response-message" id="responseMessage"></div>
     </section>
 
 </body>

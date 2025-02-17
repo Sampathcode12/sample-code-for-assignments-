@@ -73,38 +73,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Supplier</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <h2>Update Supplier</h2>
-    <form method="POST" action="">
-        <input type="number" name="Staff_id" placeholder="Enter Staff ID" required><br>
-        <input type="text" name="firstName" placeholder="Enter First Name" required><br>
-        <input type="text" name="LastName" placeholder="Enter Last Name" required><br>
-        <input type="email" name="Email" placeholder="Enter Email" required><br>
-        <input type="password" name="Password" placeholder="Enter Password" required><br>
-        <input type="text" name="Address" placeholder="Enter Addres" required><br>
-        <input type="number" name="PhoneNumber" placeholder="Enter Phone Number" required><br>
-        <input type="text" name="JobRole" placeholder="Enter  Job Role" required><br>
+    <div class="container">
+        <h2>Update Supplier</h2>
+        <form method="POST" action="">
+            <input type="number" name="Staff_id" placeholder="Enter Staff ID" required>
+            <input type="text" name="firstName" placeholder="Enter First Name" required>
+            <input type="text" name="LastName" placeholder="Enter Last Name" required>
+            <input type="email" name="Email" placeholder="Enter Email" required>
+            <input type="password" name="Password" placeholder="Enter Password" required>
+            <input type="text" name="Address" placeholder="Enter Address" required>
+            <input type="number" name="PhoneNumber" placeholder="Enter Phone Number" required>
+            
+            <select name="JobRole" id="JobRole" required>
+                <option value="">-- Select Job Role --</option>
+                <option value="Admin">Admin</option>
+                <option value="Manager">Manager</option>
+                <option value="StockKeeper">Stock Keeper</option>
+                <option value="Receptionist">Receptionist</option>
+            </select>
 
-        <button type="submit">Update Supplier</button>
+            <button type="submit">Update Supplier</button>
+        </form>
 
-      
-
-    </form>
-
-    <?php if (!empty($message)) : ?>
-        <p style="color: <?php echo htmlspecialchars($statusColor); ?>;">
-            <?php echo htmlspecialchars($message); ?>
-        </p>
-    <?php endif; ?>
+        <?php if (!empty($message)) : ?>
+            <p class="message <?php echo $statusColor == 'green' ? 'success' : 'error'; ?>">
+                <?php echo htmlspecialchars($message); ?>
+            </p>
+        <?php endif; ?>
+    </div>
 
 </body>
 </html>

@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } 
             
             else {
-                header("Location: staff_home.php");
+                header("Location: staffLogin.php");
                 exit();
             }
         } else {
@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             <button type="submit">Login</button>
         </form>
-        <p>Don't have an account? <a href="register.html">Register here</a></p>
+        <p>Don't have an account? <a href="Staff.php">Register here</a></p>
     </section>
 </body>
 </html>

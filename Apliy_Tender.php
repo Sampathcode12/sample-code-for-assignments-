@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 // Enable error reporting for debugging
 // error_reporting(E_ALL);
 // ini_set('display_errors', 1);
@@ -146,14 +147,15 @@ textarea.form-control {
 <body>
 <div class="container">
     <form action="" method="post">
-        <div class="mb-3">
-            <label class="form-label">Supplier Name</label>
-            <input type="text" class="form-control" name="SupplierName" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Email</label>
-            <input type="email" class="form-control" name="SupplierEmail" required>
-        </div>
+    <div class="mb-3">
+    <label class="form-label">Supplier Name</label>
+    <input type="text" class="form-control" name="SupplierName" value="<?php echo isset($_SESSION['supplier_name']) ? htmlspecialchars($_SESSION['supplier_name']) : ''; ?>" required>
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Email</label>
+    <input type="email" class="form-control" name="SupplierEmail" value="<?php echo isset($_SESSION['supplier_email']) ? htmlspecialchars($_SESSION['supplier_email']) : ''; ?>" required>
+</div>
         <div class="mb-3">
             <label class="form-label">Tender Reference Number</label>
             <input type="text" class="form-control" name="TenderRef" required>
@@ -167,6 +169,8 @@ textarea.form-control {
             <input type="number" class="form-control" name="OfferedPrice" required>
         </div>
         <button type="submit" class="btn">Apply for Tender</button>
+        <button type="button" class="back-btn" onclick="history.back()">← Back</button>
+
     </form>
 </div>
 

@@ -34,7 +34,7 @@
                             <td>{$drug['druG_NAME']}</td>
                             <td>{$drug['druG_TYPE']}</td>
                             <td>{$drug['druG_QUANTITY']}</td>
-                            <td>\${$drug['druG_PRICE']}</td>
+                            <td>RS:{$drug['druG_PRICE']}</td>
                             <td>{$drug['druG_COMPANY']}</td>
                             <td>" . date('Y-m-d', strtotime($drug['druG_EXPIRY'])) . "</td>
                           </tr>";

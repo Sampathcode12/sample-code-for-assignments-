@@ -53,7 +53,6 @@ echo "";
     curl_close($ch);
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,28 +62,30 @@ echo "";
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>Pharmacy Stock Request Form</h2>
-    <form method="POST" action="">
-        <label>Pharmacy Name:</label>
-        <input type="text" name="pharmacy_name" required>
+    <div class="container">
+        <h2>Pharmacy Stock Request Form</h2>
+        <form method="POST" action="">
+            <label for="pharmacy_name">Pharmacy Name:</label>
+            <input type="text" id="pharmacy_name" name="pharmacy_name" value="<?php echo isset($_SESSION['pharmacyName']) ? htmlspecialchars($_SESSION['pharmacyName']) : ''; ?>" required readonly>
 
-        <label>Email:</label>
-        <input type="email" name="pharmacy_email" required>
+            <label for="pharmacy_email">Email:</label>
+            <input type="email" id="pharmacy_email" name="pharmacy_email" value="<?php echo isset($_SESSION['Phamacy_email']) ? htmlspecialchars($_SESSION['Phamacy_email']) : ''; ?>" required readonly>
 
-        <label>Item Name:</label>
-        <input type="text" name="item_name" required>
+            <label for="item_name">Item Name:</label>
+            <input type="text" id="item_name" name="item_name" required>
 
-        <label>Brand Name:</label> <!-- Company Name -->
-        <input type="text" name="brand_name" required>
+            <label for="brand_name">Brand Name:</label>
+            <input type="text" id="brand_name" name="brand_name" required>
 
-        <label>Quantity:</label>
-        <input type="number" name="quantity" min="1" required>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" required>
 
-        <button type="submit">Submit Request</button>
-    </form>
+            <button type="submit">Submit Request</button>
+        </form>
 
-    <?php if (!empty($responseMessage)): ?>
-        <p class='response-msg'><?= htmlspecialchars($responseMessage) ?></p>
-    <?php endif; ?>
+        <?php if (!empty($responseMessage)): ?>
+            <p class="response-msg"><?php echo htmlspecialchars($responseMessage); ?></p>
+        <?php endif; ?>
+    </div>
 </body>
 </html>

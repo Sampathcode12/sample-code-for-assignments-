@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
+<div class="container">
     <h2>Update Stock</h2>
     <form method="POST" action="">
         <input type="number" name="Drugs_id" placeholder="Enter Drugs ID" required><br>
@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="submit">Update Drugs</button>
         <button type="button" class="back-btn" onclick="history.back()">← Back</button>
     </form>
-
+</div>
     <?php if (!empty($message)) : ?>
         <p style="color: <?php echo htmlspecialchars($statusColor); ?>;">
             <?php echo htmlspecialchars($message); ?>

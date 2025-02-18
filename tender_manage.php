@@ -28,33 +28,33 @@ include"Staff_header.php";
         <div class="feature">
             <h3>Tender Add</h3>
             <p>Search for available drugs and place orders easily.</p>
-            <a href="Add_tender.php" class="btn">Staff Manage</a>
+            <a href="Add_tender.php" class="btn">Add</a>
         </div>
 
         <div class="feature">
             <h3>Tender delete</h3>
             <p>Manage stock levels for manufactured and purchased drugs.</p>
-            <a href="tender_delete.php" class="btn">Manage Suplier</a>
+            <a href="tender_delete.php" class="btn">Delete</a>
         </div>
 
         <div class="feature">
             <h3>Update tender Information</h3>
             <p>Submit and track tenders for pharmaceutical supplies.</p>
-            <a href="Tender_update.php" class="btn">Manage Tenders</a>
+            <a href="Tender_update.php" class="btn">Update</a>
         </div>
 
         <div class="feature">
             <h3>view all denders</h3>
             <p>Staff can register and participate in tenders.</p>
-            <a href="tender_view.php" class="btn">Register Now</a>
+            <a href="tender_view.php" class="btn">View</a>
         </div>
 
 
         
         <div class="feature">
-            <h3>view all denders request</h3>
+            <h3>Tenders request</h3>
             <p>Staff can register and participate in tenders.</p>
-            <a href="AdmintendeAplyrview.php" class="btn">Register Now</a>
+            <a href="AdmintendeAplyrview.php" class="btn">View</a>
         </div>
       
     </section>

@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form method="post">
             <input type="text" name="searchTerm" placeholder="Enter Drug ID or Type" required>
             <button type="submit">Search</button>
-            <button type="button" onclick="window.location.href='index.php';">Back</button> <!-- Back Button -->
+            <button type="button" class="back-btn" onclick="history.back()"> Back</button>
         </form>
         
         <?php if (!empty($errorMessage)) : ?>

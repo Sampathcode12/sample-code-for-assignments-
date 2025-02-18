@@ -1,4 +1,4 @@
-<?php include "Staff_header.php"; ?>
+
 
 <?php 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

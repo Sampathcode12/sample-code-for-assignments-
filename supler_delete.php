@@ -45,12 +45,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Delete Drug</title>
+    <title>Suplier Delete</title>
 </head>
 <body>
 
     <header>
-        <h2>Delete Drug</h2>
+        <h2>Suplier Delete</h2>
     </header>
 
     <section class="delete-section">

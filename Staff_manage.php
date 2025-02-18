@@ -58,6 +58,12 @@
             <p>View and manage all staff member data.</p>
             <a href="Staff_data_view.php" class="btn">View Data</a>
         </div>
+
+        <div class="feature">
+            <h3>Staff search</h3>
+            <p>View and manage all staff member data.</p>
+            <a href="StaffSearch.php" class="btn">View Data</a>
+        </div>
     </section>
 </div>
 

@@ -42,15 +42,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $response = json_decode($result, true);
 
             // Validate API response
+            
             if ($httpCode == 200 && isset($response['statusCode']) && $response['statusCode'] == 200) {
-                $_SESSION['supplier_email'] = $email; // Set session for logged-in supplier
-                 // Optional: store supplier ID if returned
-                // $_SESSION['supplier_name'] = $response['supplierName'] ?? null;  // Optional: store supplier name
+                $_SESSION['Phamacy_email'] = $email; // Set session for logged-in Phamacy
+                 // Optional: store Phamacy ID if returned
+                $_SESSION['pharmacyName'] = $response['pharmacyName'] ?? null;  // Optional: store supplier name
                 
                 echo "<script>alert('Login successful');</script>";
-                echo "<script>window.location.href='Phamacy_dashboardt.php';</script>"; // Redirect to dashboard
+                echo "<script>window.location.href='Phamacy_dashboard.php';</script>"; // Redirect to dashboard
                 exit();
-            } else {
+            }  else {
                 $errorMessage = $response['statusMessage'] ?? "Login failed. Please check your credentials.";
             }
         }
@@ -65,12 +66,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supplier Login</title>
+    <title>Phamacy Login</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <section>
-        <h2>Supplier Login</h2>
+        <h2>Phamacy Login</h2>
         <?php if (!empty($errorMessage)) : ?>
             <p class="message" style="color: red;"><?php echo htmlspecialchars($errorMessage); ?></p>
         <?php endif; ?>

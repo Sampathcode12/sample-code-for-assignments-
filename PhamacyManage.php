@@ -19,7 +19,6 @@ include"Staff_header.php";
 
     <section class="welcome">
         <h2>Welcome to SPC</h2>
-        <p>Your trusted partner in pharmaceutical supplies.</p>
     </section>
 
     <section class="features">
@@ -27,46 +26,41 @@ include"Staff_header.php";
 
         <div class="feature">
             <h3>View Phamacys</h3>
-            <p>Search for available drugs and place orders easily.</p>
+            
             <a href="phamacyRequestView.php" class="btn">Staff Manage</a>
         </div>
 
         <div class="feature">
-            <h3> delete Phamacys </h3>
-            <p>Manage stock levels for manufactured and purchased drugs.</p>
-            <a href="PhamacyDelet.php" class="btn">Manage Suplier</a>
+            <h3> Delete Phamacys </h3>
+            <a href="PhamacyDelet.php" class="btn">Delete</a>
         </div>
 
         <div class="feature">
             <h3>Update Phamacys</h3>
-            <p>Submit and track tenders for pharmaceutical supplies.</p>
-            <a href="PhamcyUpdate.php" class="btn">Manage Tenders</a>
+            <a href="PhamcyUpdate.php" class="btn">Update</a>
         </div>
 
         <div class="feature">
             <h3>Search Phamacys</h3>
-            <p>Staff can register and participate in tenders.</p>
-            <a href="PhamactDataSearch.php" class="btn">Register Now</a>
+            <a href="PhamactDataSearch.php" class="btn">Search</a>
         </div>
 
 
         
         <div class="feature">
-            <h3>view aPhamacy drug request</h3>
-            <p>Staff can register and participate in tenders.</p>
-            <a href="tenderAplicationView.php" class="btn">Register Now</a>
+            <h3>view Phamacy Drug request</h3>
+            <a href="phamacyRequestView.php" class="btn">View</a>
         </div> 
 
         <div class="feature">
-            <h3>view aPhamacy drug Conform data</h3>
-            <p>Staff can register and participate in tenders.</p>
-            <a href="tenderAplicationView.php" class="btn">Register Now</a>
+            <h3>view Phamacy Drug Conform data</h3>
+            <a href="PhamcyRequestConformView.php" class="btn">View</a>
         </div> 
       
         <div class="feature">
-            <h3>view aPhamacy drug Reject data</h3>
+            <h3>view Phamacy Drug Reject data</h3>
             <p>Staff can register and participate in tenders.</p>
-            <a href="tenderAplicationView.php" class="btn">Register Now</a>
+            <a href="PhamacyRequestRegectView.php" class="btn">View</a>
         </div> 
     </section>
 

@@ -46,10 +46,10 @@
             ?>
         </tbody>
     </table>
-
+<div width: 100%;>
     <button onclick="window.location.href='Apliy_Tender.php';">Apply</button>
     <button onclick="window.history.back();">Back</button>
-
+    </div>
 
 </body>
 </html>

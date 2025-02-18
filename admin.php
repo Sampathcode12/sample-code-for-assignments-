@@ -46,7 +46,7 @@
     <div class="feature">
         <i class="fas fa-truck"></i>
         <h3>Supplier Management</h3>
-        <p>Monitor and manage suppliers and stock levels.</p>
+        <p>Monitor and manage suppliers levels.</p>
         <a href="Suplier_Manage.php" class="btn">Manage Suppliers</a>
     </div>
 

@@ -14,6 +14,7 @@
 
     <table class="sTable">
         <tr>
+        <th>Drug ID</th>
             <th>Drug Name</th>
             <th>Type</th>
          
@@ -33,6 +34,7 @@
                     $availability = ($drug['druG_QUANTITY'] > 0) ? "Available" : "Not Available";// Adding 10%
 
                     echo "<tr>
+                         <td>{$drug['druG_ID']}</td>
                             <td>{$drug['druG_NAME']}</td>
                             <td>{$drug['druG_TYPE']}</td>
                            

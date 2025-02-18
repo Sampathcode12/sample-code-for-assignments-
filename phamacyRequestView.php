@@ -37,7 +37,7 @@ $TenderAplyData = fetchPhamacyRequest();
                     $appId = htmlspecialchars($TenderApplication['applicationId'] ?? 'N/A');
                     echo "<tr>
                         <td>{$appId}</td>
-                        <td>" . htmlspecialchars($TenderApplication['applicationId'] ?? 'N/A') . "</td>
+                        
                         <td>" . htmlspecialchars($TenderApplication['pharmacyName'] ?? 'N/A') . "</td>
                         <td>" . htmlspecialchars($TenderApplication['pharmacyEmail'] ?? 'N/A') . "</td>
                         <td>" . htmlspecialchars($TenderApplication['itemName'] ?? 'N/A') . "</td>

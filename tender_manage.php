@@ -17,10 +17,12 @@ include"Staff_header.php";
 <body>
  
 
-    <section class="welcome">
+<section class="hero">
+    <div class="hero-content">
         <h2>Welcome to SPC</h2>
-        <p>Your trusted partner in pharmaceutical supplies.</p>
-    </section>
+        <!-- <p>Your trusted partner in pharmaceutical supplies.</p> -->
+    </div>
+</section>
 
     <section class="features">
         
@@ -59,8 +61,6 @@ include"Staff_header.php";
       
     </section>
 
-    <footer>
-        <p>&copy; 2024 SPC - State Pharmaceutical Cooperation</p>
-    </footer>
+  
 </body>
 </html>

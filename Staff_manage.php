@@ -25,14 +25,17 @@
     </ul>
 </div> -->
 
-<!-- Main Content -->
-<div class="main-content">
-    <!-- Hero Section -->
-    <section class="welcome">
-        <h2>Welcome to SPC</h2>
-        <p>Your trusted partner in pharmaceutical supplies.</p>
-    </section>
 
+
+    <!-- Hero Section -->
+    <section class="hero">
+    <div class="hero-content">
+        <h2>Welcome to SPC</h2>
+        <!-- <p>Your trusted partner in pharmaceutical supplies.</p> -->
+    </div>
+</section>
+<!-- Main Content -->
+<div class="main-content"></div>
     <!-- Features Section -->
     <section class="features">
         <div class="feature">
@@ -68,9 +71,7 @@
 </div>
 
 <!-- Footer -->
-<footer>
-    <p>&copy; 2024 SPC - State Pharmaceutical Cooperation</p>
-</footer>
+
 
 </body>
 </html>

@@ -11,10 +11,14 @@
 <body>
     
 
-    <section class="welcome">
+      <!-- Hero Section -->
+      <section class="hero">
+    <div class="hero-content">
         <h2>Welcome to SPC</h2>
-        <p>Your trusted partner in pharmaceutical supplies.</p>
-    </section>
+        <!-- <p>Your trusted partner in pharmaceutical supplies.</p> -->
+    </div>
+</section>
+
 
     <section class="features">
         
@@ -22,34 +26,35 @@
       
 
         <div class="feature">
-            <h3>Delete Suplier member</h3>
+            <h3>Delete Suplier </h3>
             <p>Manage stock levels for manufactured and purchased drugs.</p>
             <a href="supler_delete.php" class="btn">Delete</a>
         </div>
 
-        <div class="feature">
-            <h3>Ckack supler Member Information</h3>
-            <p>Submit and track tenders for pharmaceutical supplies.</p>
-            <a href="search_suppliers.php" class="btn">Chack</a>
-        </div> 
+
 
         <div class="feature">
-            <h3>All Suplier member Data</h3>
-            <p>Staff can register and participate in tenders.</p>
-            <a href="Suplier_Data_view.php" class="btn">click</a>
-        </div>
-        <div class="feature">
-            <h3>All Suplier member Update</h3>
+            <h3>Update Suplier  </h3>
             <p>Staff can register and participate in tenders.</p>
             <a href="update_supplier.php" class="btn">Update</a>
         </div>
 
+
+        <div class="feature">
+            <h3>Ckack supler  </h3>
+            <p>Submit and track tenders for pharmaceutical supplies.</p>
+            <a href="search_suppliers.php" class="btn">Search</a>
+        </div> 
+
+        <div class="feature">
+            <h3>All Suplier  </h3>
+            <p>Staff can register and participate in tenders.</p>
+            <a href="Suplier_Data_view.php" class="btn">View</a>
+        </div>
         
       
     </section>
 
-    <footer>
-        <p>&copy; 2024 SPC - State Pharmaceutical Cooperation</p>
-    </footer>
+    
 </body>
 </html>

@@ -17,20 +17,16 @@ include"Staff_header.php";
 <body>
  
 
-    <section class="welcome">
+<section class="hero">
+    <div class="hero-content">
         <h2>Welcome to SPC</h2>
-    </section>
+        <!-- <p>Your trusted partner in pharmaceutical supplies.</p> -->
+    </div>
+</section>
 
     <section class="features">
         
-
-        <div class="feature">
-            <h3>View Phamacys</h3>
-            
-            <a href="phamacyRequestView.php" class="btn">Staff Manage</a>
-        </div>
-
-        <div class="feature">
+    <div class="feature">
             <h3> Delete Phamacys </h3>
             <a href="PhamacyDelet.php" class="btn">Delete</a>
         </div>
@@ -39,33 +35,41 @@ include"Staff_header.php";
             <h3>Update Phamacys</h3>
             <a href="PhamcyUpdate.php" class="btn">Update</a>
         </div>
+        <div class="feature">
+            <h3>View Phamacys</h3>
+            
+            <a href="PhamacyView.php" class="btn">View</a>
+        </div>
+
+        
 
         <div class="feature">
             <h3>Search Phamacys</h3>
             <a href="PhamactDataSearch.php" class="btn">Search</a>
         </div>
 
+        </section>
 
-        
+        <section class="features">
         <div class="feature">
-            <h3>view Phamacy Drug request</h3>
+            <h3>Phamacy Drug request</h3>
             <a href="phamacyRequestView.php" class="btn">View</a>
         </div> 
 
         <div class="feature">
-            <h3>view Phamacy Drug Conform data</h3>
+            <h3> Conform Drug  request</h3>
             <a href="PhamcyRequestConformView.php" class="btn">View</a>
         </div> 
       
         <div class="feature">
-            <h3>view Phamacy Drug Reject data</h3>
-            <p>Staff can register and participate in tenders.</p>
+            <h3> Reject Drug request  </h3>
+            <!-- <p>Staff can register and participate in tenders.</p> -->
             <a href="PhamacyRequestRegectView.php" class="btn">View</a>
         </div> 
     </section>
 
-    <footer>
+    <!-- <footer>
         <p>&copy; 2024 SPC - State Pharmaceutical Cooperation</p>
-    </footer>
+    </footer> -->
 </body>
 </html>

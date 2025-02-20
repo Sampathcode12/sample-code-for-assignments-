@@ -67,11 +67,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phamacy Login</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="login.css"> <!-- Link to external CSS -->
 </head>
 <body>
-    <section>
-        <h2>Phamacy Login</h2>
+    <section class="welcome">
+        <h2> Login</h2>
         <?php if (!empty($errorMessage)) : ?>
             <p class="message" style="color: red;"><?php echo htmlspecialchars($errorMessage); ?></p>
         <?php endif; ?>

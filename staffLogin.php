@@ -8,6 +8,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // API endpoint
     $apiUrl = "http://localhost:5268/api/Staff/StaffLogin";
 
+    
+
     // Prepare the data
     $postData = json_encode([
         "EMAIL" => $email,
@@ -72,17 +74,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff Login</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css"> <!-- Link to external CSS -->
 </head>
 <body>
-    <section>
+    <section class="welcome">
         <h2>Login</h2>
         <form method="POST">
             <label for="email">Email:</label>

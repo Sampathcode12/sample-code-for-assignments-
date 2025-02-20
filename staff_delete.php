@@ -45,17 +45,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Delete Drug</title>
+    <title>Delete Staff member</title>
 </head>
 <body>
 
     <header>
-        <h2>Delete Drug</h2>
+        <h2>Delete Staff member</h2>
     </header>
 
     <section class="delete-section">
         <form method="post">
-            <input type="text" name="searchTerm" placeholder="Enter Suplier ID " required>
+            <input type="text" name="searchTerm" placeholder="Enter Member ID " required>
             <button type="submit">Delete</button>
         </form>
         

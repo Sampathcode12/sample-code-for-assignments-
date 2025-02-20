@@ -78,13 +78,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Supplier</title>
+    <title>Update Staff Mamber</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <div class="container">
-        <h2>Update Supplier</h2>
+        <h2>Update Staff Mamber</h2>
         <form method="POST" action="">
             <input type="number" name="Staff_id" placeholder="Enter Staff ID" required>
             <input type="text" name="firstName" placeholder="Enter First Name" required>
@@ -102,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <option value="Receptionist">Receptionist</option>
             </select>
 
-            <button type="submit">Update Supplier</button>
+            <button type="submit">Update Member</button>
         </form>
 
         <?php if (!empty($message)) : ?>

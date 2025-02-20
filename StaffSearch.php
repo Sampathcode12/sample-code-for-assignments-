@@ -22,13 +22,7 @@ function searchStaff($searchTerm) {
     }
 }
 ?>
-<form method="GET">
-<div style=" justify-content: center; align-items: center; width: 30%; margin: 0 auto;">
-    <input type="text" name="search" placeholder="Search Suppliers ID / Name Or Email" required>
-    <button type="submit" style="padding: 10px 20px;">Search</button>
-</div>
-    <link rel="stylesheet" href="styles.css"> 
-</form>
+
 
 <table class="sTable">
     <tr>
@@ -72,3 +66,11 @@ function searchStaff($searchTerm) {
         ?>
     </tbody>
 </table>
+
+<form method="GET">
+<div style=" justify-content: center; align-items: center; width: 30%; margin: 0 auto;">
+    <input type="text" name="search" placeholder="Search Suppliers ID / Name Or Email" required>
+    <button type="submit" style="padding: 10px 20px;">Search</button>
+</div>
+    <link rel="stylesheet" href="styles.css"> 
+</form>

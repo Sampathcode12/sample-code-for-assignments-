@@ -59,93 +59,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <style>/* General Styles */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f7fa;
-    margin: 0;
-    padding: 0;
-}
-
-/* Center the form */
-.container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Form Styles */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-/* Label Styles */
-.form-label {
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-}
-
-/* Input and Textarea Styles */
-.form-control {
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
-
-.form-control:focus {
-    border-color: #28a745;
-    outline: none;
-}
-
-/* Button Styles */
-.btn {
-    background-color: #28a745;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-    background-color: #218838;
-}
-
-/* Additional Styles */
-.mb-3 {
-    margin-bottom: 15px;
-}
-
-textarea.form-control {
-    resize: vertical;
-}
-
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-    .container {
-        width: 90%;
-        padding: 15px;
-    }
-}
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="container">
+
+    <div class="container">
+    <h2>Apply Tender</h2>
     <form action="" method="post">
     <div class="mb-3">
     <label class="form-label">Supplier Name</label>

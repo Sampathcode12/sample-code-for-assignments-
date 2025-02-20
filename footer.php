@@ -1,4 +1,20 @@
-<footer class="footer">
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+</html><footer class="footer">
     <div class="footer-content">
         <div class="footer-left">
             <p>&copy; 2024 SPC - State Pharmaceutical Cooperation. All rights reserved.</p>
@@ -13,3 +29,4 @@
         </div>
     </div>
 </footer>
+</body>

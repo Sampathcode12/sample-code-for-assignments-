@@ -13,7 +13,7 @@ $TenderAplyData = fetchTenderApplyData();
 <body>
 
 <header>
-    <h2>Tender List</h2>
+    <h2>Tender Request List</h2>
 </header>
 
 <table class="sTable">

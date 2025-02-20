@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div class="container mt-5">
-        <h2 class="text-center">Admin - Create Tender</h2>
+        <h2 class="text-center"> Create Tender</h2>
         <form action="" method="post">
             <div class="mb-3">
                 <label class="form-label">Tender Title</label>
@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label class="form-label">Deadline</label>
                 <input type="date" class="form-control" name="deadline" required>
             </div>
-            <button type="submit" class="btn btn-primary">Create Tender</button>
+            <button type="submit" class="btn btn-primary">Create & publish</button>
         </form>
     </div>
 

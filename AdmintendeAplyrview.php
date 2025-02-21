@@ -1,7 +1,3 @@
-<?php
-include 'fetch_Data.php';
-$TenderAplyData = fetchTenderApplyData();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +5,7 @@ $TenderAplyData = fetchTenderApplyData();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tender List</title>
     <link rel="stylesheet" href="styles.css">  <!-- External CSS File -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery for AJAX -->
 </head>
 <body>
 
@@ -31,6 +28,9 @@ $TenderAplyData = fetchTenderApplyData();
     </thead>
     <tbody>
         <?php
+        include 'fetch_Data.php';
+        $TenderAplyData = fetchTenderApplyData();
+
         if (isset($TenderAplyData['data']) && is_array($TenderAplyData['data'])) {
             foreach ($TenderAplyData['data'] as $TenderApplication) {
                 if (is_array($TenderApplication)) {
@@ -44,16 +44,8 @@ $TenderAplyData = fetchTenderApplyData();
                         <td>" . htmlspecialchars($TenderApplication['proposalText'] ?? 'N/A') . "</td>   
                         <td>" . htmlspecialchars($TenderApplication['date'] ?? 'N/A') . "</td>   
                         <td>
-                            <form action='confirm_tender.php' method='POST' style='display:inline-block;'>
-                                <input type='hidden' name='aplicationID' value='{$appId}'>
-                                <input type='hidden' name='action' value='confirm'>
-                                <button type='submit'>Confirm</button>
-                            </form>
-                            <form action='reject_tender.php' method='POST' style='display:inline-block;'>
-                                <input type='hidden' name='aplicationID' value='{$appId}'>
-                                <input type='hidden' name='action' value='reject'>
-                                <button type='submit'>Reject</button>
-                            </form>
+                            <button onclick='confirmTender({$appId})'>Confirm</button>
+                            <button onclick='rejectTender({$appId})'>Reject</button>
                         </td>
                     </tr>";
                 }
@@ -64,6 +56,49 @@ $TenderAplyData = fetchTenderApplyData();
         ?>
     </tbody>
 </table>
+
+<!-- JavaScript for AJAX Requests -->
+<script>
+function confirmTender(applicationId) {
+    $.ajax({
+        type: "POST",
+        url: "confirm_tender.php",
+        data: { aplicationID: applicationId },
+        dataType: "json",
+        success: function(response) {
+            if (response.status === 200) {
+                alert(response.message); // Show success notification
+                location.reload(); // Refresh page
+            } else {
+                alert("Error: " + response.message);
+            }
+        },
+        error: function() {
+            alert("An error occurred while confirming the tender.");
+        }
+    });
+}
+
+function rejectTender(applicationId) {
+    $.ajax({
+        type: "POST",
+        url: "reject_tender.php",
+        data: { aplicationID: applicationId },
+        dataType: "json",
+        success: function(response) {
+            if (response.status === 200) {
+                alert(response.message); // Show success notification
+                location.reload(); // Refresh page
+            } else {
+                alert("Error: " + response.message);
+            }
+        },
+        error: function() {
+            alert("An error occurred while rejecting the tender.");
+        }
+    });
+}
+</script>
 
 </body>
 </html>

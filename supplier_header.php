@@ -69,7 +69,7 @@ $supplierName = $_SESSION['supplier_name'];
 
         <!-- Logout Button -->
         <div class="logout">
-            <form method="POST" action="logout.php">
+            <form method="POST" action="SuplierLogout.php">
                 <button type="submit" name="logout" class="btn-logout">Logout</button>
                 <!-- <button type="button" class="back-btn" onclick="history.back()">← Back</button> -->
 

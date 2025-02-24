@@ -1,4 +1,15 @@
+<?php
+session_start(); // Start the session
 
+// Check if the user is logged in
+if (!isset($_SESSION['Pharmacy_email'])) {
+    header("Location: login.php"); // Redirect to login if not logged in
+    exit();
+}
+
+// Get pharmacy name from session
+$pharmacyName = $_SESSION['pharmacyName'] ?? "Guest"; 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,24 +24,13 @@
 
 <header class="header-container">
     <div class="logo-container">
-        <!-- <a href="staff_home.php" class="logo"> -->
-            <!-- <img src="logo.png" alt="SPC Logo" class="logo-icon"> -->
-            <H1>SPC</H1> <!-- Logo Text -->
-        </a>
+        <H1>SPC</H1> <!-- Logo Text -->
     </div>
-    
 
     <div class="user-info">
-        <!-- Profile Icon -->
-        <!-- <div class="profile">
-            <a href="profile.php">
-                <img url="" alt="Profile Icon" class="profile-icon">
-            </a>
-        </div> -->
-
         <!-- Staff Role and Name -->
         <div class="staff-info">
-            <p>Welcome, </p>
+            <p>Welcome, <?php echo htmlspecialchars($pharmacyName); ?>!</p>
         </div>
 
         <!-- Logout Button -->
@@ -38,7 +38,6 @@
             <form method="POST" action="PhamacyLogout.php">
                 <button type="submit" name="logout" class="btn-logout">Logout</button>
                 <button type="button" class="back-btn" onclick="history.back()">← Back</button>
-
             </form>
         </div>
     </div>

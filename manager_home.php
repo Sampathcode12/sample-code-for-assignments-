@@ -39,32 +39,50 @@ include"Staff_header.php";
 
     <div class="feature">
         <h3> Staff</h3>
-        <p>View system Staff.</p>
+        <!-- <p>View system Staff.</p> -->
         <a href="Staff_data_view.php" class="btn">Go to Staff</a>
     </div>
     <div class="feature">
         <h3> Suplier</h3>
-        <p>View system Supliers.</p>
+        <!-- <p>View system Supliers.</p> -->
         <a href="Suplier_Data_view.php" class="btn">Go to Suplier</a>
     </div>
     <div class="feature">
         <h3> Phamacy</h3>
-        <p>View system users.</p>
+        <!-- <p>View system users.</p> -->
         <a href="PhamacyView.php" class="btn">Go to Phamacys</a>
     </div>
 
     <div class="feature">
         <h3> Manage Tenders</h3>
-        <p>Review and approve tenders from suppliers.</p>
-        <a href="tender_manage.php" class="btn">Go to Orders</a>
+        <!-- <p>Review and approve tenders from suppliers.</p> -->
+        <a href="tender_manage.php" class="btn">Go to Tenders</a>
     </div>
+
+    <div class="feature">
+            <h3>Drugs</h3>
+            <a href="DrugsData.php" class="btn">view </a>
+        </div>
 
     <div class="feature">
         <h3>Drug order</h3>
        
-        <p>Approve and track customer orders.</p>
-        <a href="phamacyRequestView.php" class="btn">Go to Tenders</a>
+        <!-- <p>Approve and track customer orders.</p> -->
+        <a href="phamacyRequestView.php" class="btn">View</a>
     </div>
+    
+    
+
+        <div class="feature">
+            <h3> Conform order</h3>
+            <a href="PhamcyRequestConformView.php" class="btn">View</a>
+        </div> 
+      
+        <div class="feature">
+            <h3> Reject order </h3>
+            <!-- <p>Staff can register and participate in tenders.</p> -->
+            <a href="PhamacyRequestRegectView.php" class="btn">View</a>
+        </div> 
 
     <!-- <div class="feature">
         <h3>Manage Warehouse Stock</h3>

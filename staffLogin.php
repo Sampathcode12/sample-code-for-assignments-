@@ -37,10 +37,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($response['statusCode']) && $response['statusCode'] == 200) {
             // Extract job role from response
             $jobRole = $response['jobRole'] ?? 'Unknown';
+            
 
             // Store in session
             $_SESSION['email'] = $email;
             $_SESSION['job_role'] = $jobRole;
+           
 
             // Redirect based on job role
             if ($jobRole === 'Admin') {
@@ -94,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             <button type="submit">Login</button>
         </form>
-        <p>Don't have an account? <a href="Staff.php">Register here</a></p>
+        <!-- <p>Don't have an account? <a href="Staff.php">Register here</a></p> -->
     </section>
 </body>
 </html>

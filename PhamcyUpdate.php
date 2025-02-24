@@ -60,7 +60,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($httpCode == 200 && isset($result['statusCode']) && $result['statusCode'] == 200) {
                 $message = "Pharmacy updated successfully.";
                 $statusColor = "green";
-            } else {
+            } elseif ($httpCode == 400) {
+                $message = "Error: Bad request. Please check the input data.";
+            }
+            
+            else {
                 $message = "An error occurred: " . json_encode($result);
             }
         }

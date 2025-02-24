@@ -14,8 +14,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $supplierPhoneNumber = $_POST['supplier_Phone_number'] ?? '';
 
     // Validate required fields
-    if (!empty($supplierId) && !empty($supplierName) && !empty($supplierEmail) && !empty($supplierAddress) && !empty($supplierPassword) && !empty($supplierLicenNumber)) {
-        
+    if (empty($supplierId)) {
+        $message = "Error: Supplier ID is missing or undefined.";
+    } elseif (empty($supplierName) || empty($supplierEmail) || empty($supplierAddress) || empty($supplierPassword) || empty($supplierLicenNumber)) {
+        $message = "Error: Please enter all required supplier details.";
+    } else {
         // Prepare data to send to API
         $data = [
             'SUP_ID' => $supplierId,
@@ -53,22 +56,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Handle response from API
         if ($curlError) {
             $message = "Failed to connect to API: $curlError";
+        } elseif ($httpCode == 404) {
+            $message = "Error: Supplier not found (Invalid ID).";
+        } elseif ($httpCode == 400) {
+            $message = "Error: Bad request. Please check the input data.";
+        } elseif ($httpCode == 500) {
+            $message = "Error: Server issue. Please try again later.";
         } else {
             $result = json_decode($response, true);
-
             if ($httpCode == 200 && isset($result['statusCode']) && $result['statusCode'] == 200) {
                 $message = "Supplier updated successfully.";
                 $statusColor = "green";
             } else {
-                $message = "An error occurred: " . json_encode($result);
+                $message = "An unexpected error occurred: " . json_encode($result);
             }
         }
-    } else {
-        $message = "Please enter all required supplier details.
-        ";
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

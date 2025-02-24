@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($httpCode == 200 && isset($result['statusCode']) && $result['statusCode'] == 200) {
                 $message = "Tender successfully deleted.";
                 $statusColor = "green";
-            } elseif ($httpCode == 404 || (isset($result['statusCode']) && $result['StatusCode'] == 404)) {
+            } elseif ($httpCode == 400 || (isset($result['statusCode']) && $result['StatusCode'] == 404)) {
                 $message = "No matching Tender found or already deleted.";
             } else {
                 $message = "An error occurred: " . ($result['statusMessage'] ?? "Unknown error.");
@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
     <header>
-        <h2>Delete Drug</h2>
+        <h2>Delete Tender</h2>
     </header>
 
     <section class="delete-section">

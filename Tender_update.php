@@ -60,7 +60,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($httpCode == 200 && isset($result['statusCode']) && $result['statusCode'] == 200) {
                 $message = "Tender updated successfully.";
                 $statusColor = "green";
-            } else {
+            } 
+
+            elseif ($httpCode == 400 || (isset($result['statusCode']) && $result['StatusCode'] == 404)) {
+                $message = "No matching Tender found.";}
+            
+            else {
                 $message = "An error occurred: " . json_encode($result);
             }
         }
@@ -81,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
     <div class="container">
-    <h2>Update Supplier</h2>
+    <h2>Update Tender</h2>
     <form method="POST" action="">
 
          <input type="number" name="RF_number" placeholder="Enter References Number7" required><br>

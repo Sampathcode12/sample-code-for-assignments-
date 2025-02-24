@@ -24,20 +24,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             $result = json_decode($response, true);
 
+            // Check for valid response from API
             if ($httpCode == 200 && isset($result['statusCode']) && $result['statusCode'] == 200) {
-                $message = "Supler successfully deleted.";
+                $message = "Supplier successfully deleted.";
                 $statusColor = "green";
-            } elseif ($httpCode == 404 || (isset($result['statusCode']) && $result['StatusCode'] == 404)) {
-                $message = "No matching Supler found or already deleted.";
+            } elseif ($httpCode == 404 || (isset($result['statusCode']) && $result['statusCode'] == 404)) {
+                $message = "No matching supplier found or supplier already deleted.";
             } else {
                 $message = "An error occurred: " . ($result['statusMessage'] ?? "Unknown error.");
             }
         }
     } else {
-        $message = "Please enter a Suplier ID or Name.";
+        $message = "Please enter a Supplier ID or Name.";
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

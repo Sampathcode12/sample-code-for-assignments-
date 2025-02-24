@@ -4,24 +4,33 @@ function searchSupplier($searchTerm) {
     
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    $result = curl_exec($ch);
-    
-    if (curl_errno($ch)) {
-        return ['error' => 'Error: ' . curl_error($ch)];
-    }
-    
-    $response = json_decode($result, true);
-    
-    curl_close($ch);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10); // Set timeout to avoid long waiting times
 
-    if ($response && is_array($response) && !empty($response)) {
-        return ['data' => $response];
-    } else {
+    $result = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    if (curl_errno($ch)) {
+        $error = 'Error: ' . curl_error($ch);
+        curl_close($ch);
+        return ['error' => $error]; // Return cURL error
+    }
+
+    curl_close($ch);
+    $response = json_decode($result, true);
+
+    // Handle different response cases
+    if ($httpCode !== 200) {
+        return ['error' => "API request failed with status code: $httpCode"];
+    }
+
+    if (!$response || !is_array($response) || empty($response)) {
         return ['error' => 'No suppliers found for the given search term.'];
     }
+
+    return ['data' => $response];
 }
 ?>
+
 
 
 <table class="sTable">

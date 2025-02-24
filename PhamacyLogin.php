@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = trim($_POST['password']);
 
     if (!empty($email) && !empty($password)) {
-        // API endpoint (replace with your actual .NET API URL)
+        // API endpoint (replace with actual .NET API URL)
         $apiUrl = "http://localhost:5268/api/PamacyController1/PharmacyLogin";
 
         // Prepare the data to send
@@ -42,16 +42,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $response = json_decode($result, true);
 
             // Validate API response
-            
             if ($httpCode == 200 && isset($response['statusCode']) && $response['statusCode'] == 200) {
-                $_SESSION['Phamacy_email'] = $email; // Set session for logged-in Phamacy
-                 // Optional: store Phamacy ID if returned
-                $_SESSION['pharmacyName'] = $response['pharmacyName'] ?? null;  // Optional: store supplier name
+                // Start user session
+                $_SESSION['Pharmacy_email'] = $email; // Set session for logged-in Pharmacy
+                $_SESSION['pharmacyName'] = $response['pharmacyName'] ?? null;  // Optional: store pharmacy name
                 
-                echo "<script>alert('Login successful');</script>";
-                echo "<script>window.location.href='Phamacy_dashboard.php';</script>"; // Redirect to dashboard
+                // Redirect to dashboard securely
+                header("Location: Phamacy_dashboard.php");
                 exit();
-            }  else {
+            } else {
                 $errorMessage = $response['statusMessage'] ?? "Login failed. Please check your credentials.";
             }
         }
@@ -66,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phamacy Login</title>
+    <title>Pharmacy Login</title>
     <link rel="stylesheet" href="login.css"> <!-- Link to external CSS -->
 </head>
 <body>
@@ -84,7 +83,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             <button type="submit">Login</button>
         </form>
-        <p>Don't have an account? <a href="Supplier_register.php">Register here</a></p>
+        <p>Don't have an account? <a href="PhamacyRegistaer.php">Register here</a></p>
+       
     </section>
+
+   
 </body>
 </html>

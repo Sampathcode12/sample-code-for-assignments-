@@ -54,7 +54,7 @@
     </div>
 
 
-    <!-- <!-- <div class="feature">
+    <!--  <div class="feature">
         <i class="fas fa-file-contract"></i>
         <h3>Tender Management</h3>
         <p>Submit and track pharmaceutical tenders.</p>

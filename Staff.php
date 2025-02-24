@@ -1,6 +1,20 @@
 
 
 <?php 
+
+
+session_start();
+
+// Check if user is logged in and is an Admin
+if (!isset($_SESSION['job_role']) || $_SESSION['job_role'] !== 'Admin') {
+    // Redirect to login page or unauthorized access page
+    header("Location: staffLogin.php");
+    exit();
+}
+
+
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Staff_Id = $_POST['StaffId'] ?? ''; 
     $firstname = $_POST['FIRSTNAME'] ?? ''; 

@@ -6,6 +6,10 @@ function searchPharmacy($searchTerm) {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     
     $result = curl_exec($ch);
+ 
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $curlError = curl_error($ch);
+    curl_close($ch);
     
     if (curl_errno($ch)) {
         return ['error' => 'Error: ' . curl_error($ch)];
@@ -17,8 +21,10 @@ function searchPharmacy($searchTerm) {
 
     if ($response && is_array($response) && !empty($response)) {
         return ['data' => $response];
-    } else {
+    } elseif ($httpCode == 404) {
         return ['error' => 'No pharmacies found for the given search term.'];
+    } else {
+        return ['error' => 'Unexpected API response. Please check the API or try again later.'];
     }
 }
 ?>
@@ -54,16 +60,15 @@ function searchPharmacy($searchTerm) {
             } elseif (isset($pharmacyData['data'])) {
                 foreach ($pharmacyData['data'] as $pharmacy) {
                     echo "<tr>
-                            <td>{$pharmacy['id']}</td>
-                            <td>{$pharmacy['pharmacyName']}</td>
-                            <td>{$pharmacy['email']}</td>
-                            <td>{$pharmacy['regNo']}</td>
-                            <td>{$pharmacy['license']}</td>
-                            <td>{$pharmacy['address']}</td>
-                            <td>{$pharmacy['phone']}</td>
-                            <td>{$pharmacy['password']}</td>
-                            
-                        </tr>";
+                        <td>" . htmlspecialchars($pharmacy['id'] ?? 'N/A') . "</td>
+                        <td>" . htmlspecialchars($pharmacy['pharmacyName'] ?? 'N/A') . "</td>
+                        <td>" . htmlspecialchars($pharmacy['email'] ?? 'N/A') . "</td>
+                        <td>" . htmlspecialchars($pharmacy['regNo'] ?? 'N/A') . "</td>
+                        <td>" . htmlspecialchars($pharmacy['license'] ?? 'N/A') . "</td>
+                        <td>" . htmlspecialchars($pharmacy['address'] ?? 'N/A') . "</td>
+                        <td>" . htmlspecialchars($pharmacy['phone'] ?? 'N/A') . "</td>
+                        <td>" . htmlspecialchars($pharmacy['password'] ?? 'N/A') . "</td>
+                    </tr>";
 
 
                 }

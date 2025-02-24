@@ -35,7 +35,7 @@
 
         <!-- Logout Button -->
         <div class="logout">
-            <form method="POST" action="logout.php">
+            <form method="POST" action="PhamacyLogout.php">
                 <button type="submit" name="logout" class="btn-logout">Logout</button>
                 <button type="button" class="back-btn" onclick="history.back()">← Back</button>
 

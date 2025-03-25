@@ -1,59 +1,81 @@
 <?php
+// staff_register.php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Capture the form data
-    $firstname = $_POST['FIRSTNAME'] ?? ''; 
-    $lastname = $_POST['LASTNAME'] ?? ''; 
-    $email = $_POST['EMAIL'] ?? ''; 
-    $password = $_POST['PASSWORD'] ?? ''; 
-    $address = $_POST['ADDRESS'] ?? ''; 
-    $phone_number = $_POST['Phone_number'] ?? ''; 
-    $job_role = $_POST['JobRole'] ?? ''; 
-
-    // Handle file upload
-    if (isset($_FILES['profile_picture'])) {
-        $profilePicture = $_FILES['profile_picture'];
-        $profilePicturePath = "uploads/" . $profilePicture['name'];  // Define the file upload path
-        move_uploaded_file($profilePicture['tmp_name'], $profilePicturePath);  // Move the uploaded file to the server
+    // Validate required fields
+    $requiredFields = ['FirstName', 'LastName', 'Email', 'Password', 'Address', 'PhoneNumber', 'JobRole'];
+    $missingFields = [];
+    
+    foreach ($requiredFields as $field) {
+        if (empty($_POST[$field])) {
+            $missingFields[] = $field;
+        }
+    }
+    
+    if (!empty($missingFields)) {
+        echo "<script>alert('Missing required fields: " . implode(', ', $missingFields) . "');</script>";
+        exit();
     }
 
-    // Create an array with the form data and file information
-    $data = array(
-        "firstname" => $firstname,
-        "lastname" => $lastname,
-        "email" => $email,
-        "password" => $password,
-        "address" => $address,
-        "phone_number" => $phone_number,
-        "job_role" => $job_role,
-        "profile_picture" => $profilePicturePath  // Path to the uploaded profile picture
-    );
+    // Validate email format
+    if (!filter_var($_POST['Email'], FILTER_VALIDATE_EMAIL)) {
+        echo "<script>alert('Invalid email format');</script>";
+        exit();
+    }
 
-    // API URL where the data needs to be sent
-    $apiUrl = "http://localhost:5268/api/Staff/Addstaff";
+    // Prepare API data (matches your C# Staff model)
+    $data = [
+        'FIRSTNAME' => $_POST['FirstName'],
+        'LASTNAME' => $_POST['LastName'],
+        'EMAIL' => $_POST['Email'],
+        'PASSWORD' => password_hash($_POST['Password'], PASSWORD_BCRYPT), // Secure hashing
+        'ADDRESS' => $_POST['Address'],
+        'PHONE_NUMBER' => $_POST['PhoneNumber'],
+        'JOB_ROLE' => $_POST['JobRole'],
+        'ProfilePicture' => null
+    ];
 
+    // Handle file upload if present
+    if (isset($_FILES['ProfilePicture']) && $_FILES['ProfilePicture']['error'] == UPLOAD_ERR_OK) {
+        $uploadDir = __DIR__ . '/uploads/staff_profile/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0755, true);
+        }
+        
+        $fileName = uniqid() . '_' . basename($_FILES['ProfilePicture']['name']);
+        $targetPath = $uploadDir . $fileName;
+        
+        if (move_uploaded_file($_FILES['ProfilePicture']['tmp_name'], $targetPath)) {
+            $data['ProfilePicture'] = $targetPath;
+        }
+    }
+
+    // API endpoint (adjust to your actual endpoint)
+    $apiUrl = "http://localhost:5268/api/Staff/AddStaff";
+    
     // Initialize cURL
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $apiUrl);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        'Content-Type: application/json'
-    ));
+    curl_setopt_array($ch, [
+        CURLOPT_URL => $apiUrl,
+        CURLOPT_POST => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POSTFIELDS => json_encode($data),
+        CURLOPT_HTTPHEADER => [
+            'Content-Type: application/json',
+            'Accept: application/json'
+        ]
+    ]);
 
-    // Execute cURL request
     $response = curl_exec($ch);
-    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE); 
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
 
-    // Handle the response based on the HTTP status code
+    // Handle response
     if ($httpCode == 200) {
-        echo "<script>alert('Staff Member Successfully Added');</script>";
-        echo "<script>window.location.href='staffLogin.php';</script>";
-    } elseif ($httpCode == 409) {
-        echo "<script>alert('Error: Email or Staff ID already exists!');</script>";
+        echo "<script>alert('Staff added successfully!'); window.location.href='staff_list.php';</script>";
     } else {
-        echo "<script>alert('Error: Unable to add staff. Please try again later.');</script>";
+        $responseData = json_decode($response, true);
+        $errorMsg = $responseData['StatusMessage'] ?? 'Unknown error occurred';
+        echo "<script>alert('Error: $errorMsg');</script>";
     }
 }
 ?>
@@ -63,49 +85,122 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Add Staff</title>
+    <title>Add Staff Member</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 40px;
+        }
+        .card {
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .form-label {
+            font-weight: 500;
+        }
+        .profile-preview {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 10px auto;
+            display: block;
+            border: 3px solid #dee2e6;
+        }
+    </style>
 </head>
 <body>
-    <div class="form-container">
-        <h2>Add Staff</h2>
-        <section class="welcome">
-            <form method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="FIRSTNAME">First Name</label>
-                    <input type="text" id="FIRSTNAME" name="FIRSTNAME" placeholder="Enter First Name" required>
-                </div>
-                <div class="form-group">
-                    <label for="LASTNAME">Last Name</label>
-                    <input type="text" id="LASTNAME" name="LASTNAME" placeholder="Enter Last Name" required>
-                </div>
-                <div class="form-group">
-                    <label for="EMAIL">Email</label>
-                    <input type="email" id="EMAIL" name="EMAIL" placeholder="Enter Email" required>
-                </div>
-                <div class="form-group">
-                    <label for="PASSWORD">Password</label>
-                    <input type="password" id="PASSWORD" name="PASSWORD" placeholder="Enter Password" required>
-                </div>
-                <div class="form-group">
-                    <label for="ADDRESS">Address</label>
-                    <input type="text" id="ADDRESS" name="ADDRESS" placeholder="Enter Address" required>
-                </div>
-                <div class="form-group">
-                    <label for="Phone_number">Phone Number</label>
-                    <input type="text" id="Phone_number" name="Phone_number" placeholder="Enter Phone Number" required>
-                </div>
-                <div class="form-group">
-                    <label for="JobRole">Job Role</label>
-                    <input type="text" id="JobRole" name="JobRole" placeholder="Enter Job Role" required>
-                </div>
-                <div class="form-group">
-                    <label for="profile_picture">Profile Picture</label>
-                    <input type="file" id="profile_picture" name="profile_picture" required>
-                </div>
-                <button type="submit" class="submit-btn">Submit</button>
-            </form>
-        </section>
+    <div class="container">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Add New Staff Member</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data" id="staffForm">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="FirstName" class="form-label">First Name*</label>
+                            <input type="text" class="form-control" id="FirstName" name="FirstName" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="LastName" class="form-label">Last Name*</label>
+                            <input type="text" class="form-control" id="LastName" name="LastName" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Email" class="form-label">Email*</label>
+                        <input type="email" class="form-control" id="Email" name="Email" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Password" class="form-label">Password*</label>
+                        <input type="password" class="form-control" id="Password" name="Password" minlength="8" required>
+                        <small class="text-muted">Minimum 8 characters</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Address" class="form-label">Address*</label>
+                        <input type="text" class="form-control" id="Address" name="Address" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="PhoneNumber" class="form-label">Phone Number*</label>
+                        <input type="tel" class="form-control" id="PhoneNumber" name="PhoneNumber" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="JobRole" class="form-label">Job Role*</label>
+                        <select class="form-select" id="JobRole" name="JobRole" required>
+                            <option value="">Select Job Role</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Supervisor">Supervisor</option>
+                            <option value="Staff">Staff</option>
+                            <option value="Administrator">Administrator</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3 text-center">
+                        <label for="ProfilePicture" class="form-label">Profile Picture</label>
+                        <input type="file" class="form-control" id="ProfilePicture" name="ProfilePicture" accept="image/*" onchange="previewImage(this)">
+                        <img id="profilePreview" src="https://via.placeholder.com/120" class="profile-preview mt-2" alt="Profile Preview">
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Add Staff Member</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function previewImage(input) {
+            const preview = document.getElementById('profilePreview');
+            const file = input.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "https://via.placeholder.com/120";
+            }
+        }
+
+        document.getElementById('staffForm').addEventListener('submit', function(e) {
+            const password = document.getElementById('Password').value;
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters long');
+                e.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>

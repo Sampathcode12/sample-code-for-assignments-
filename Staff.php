@@ -22,34 +22,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // Prepare API data (matches your C# Staff model)
+    // Initialize profile picture as null
+    $profilePictureBase64 = null;
+    
+    // Handle file upload if present
+    if (isset($_FILES['ProfilePicture']) && $_FILES['ProfilePicture']['error'] == UPLOAD_ERR_OK) {
+        $fileType = pathinfo($_FILES['ProfilePicture']['name'], PATHINFO_EXTENSION);
+        $allowedTypes = ['jpg', 'jpeg', 'png'];
+        
+        if (!in_array(strtolower($fileType), $allowedTypes)) {
+            echo "<script>alert('Invalid file type. Only JPG, JPEG, and PNG allowed.');</script>";
+            exit();
+        }
+        
+        $imageData = file_get_contents($_FILES['ProfilePicture']['tmp_name']);
+        $profilePictureBase64 = base64_encode($imageData);
+    }
+
+    // Prepare API data
     $data = [
         'FIRSTNAME' => $_POST['FirstName'],
         'LASTNAME' => $_POST['LastName'],
         'EMAIL' => $_POST['Email'],
-        'PASSWORD' => password_hash($_POST['Password'], PASSWORD_BCRYPT), // Secure hashing
+        'PASSWORD' => password_hash($_POST['Password'], PASSWORD_BCRYPT),
         'ADDRESS' => $_POST['Address'],
         'PHONE_NUMBER' => $_POST['PhoneNumber'],
         'JOB_ROLE' => $_POST['JobRole'],
-        'ProfilePicture' => null
+        'ProfilePictureBase64' => $profilePictureBase64
     ];
 
-    // Handle file upload if present
-    if (isset($_FILES['ProfilePicture']) && $_FILES['ProfilePicture']['error'] == UPLOAD_ERR_OK) {
-        $uploadDir = __DIR__ . '/uploads/staff_profile/';
-        if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0755, true);
-        }
-        
-        $fileName = uniqid() . '_' . basename($_FILES['ProfilePicture']['name']);
-        $targetPath = $uploadDir . $fileName;
-        
-        if (move_uploaded_file($_FILES['ProfilePicture']['tmp_name'], $targetPath)) {
-            $data['ProfilePicture'] = $targetPath;
-        }
-    }
-
-    // API endpoint (adjust to your actual endpoint)
+    // API endpoint
     $apiUrl = "http://localhost:5268/api/Staff/AddStaff";
     
     // Initialize cURL

@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: manager_home.php");
                 exit();
             } elseif ($jobRole === 'StockKeeper') {
-                header("Location: Stock_keeper.php");
+                header("Location: stock_keeper.php");
                 exit();
             } else {
                 header("Location: staff_home.php"); // Default to staff home if job role doesn't match
@@ -66,7 +66,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

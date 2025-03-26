@@ -8,8 +8,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // API endpoint
     $apiUrl = "http://localhost:5268/api/Staff/StaffLogin";
 
-    
-
     // Prepare the data
     $postData = json_encode([
         "EMAIL" => $email,
@@ -35,34 +33,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $response = json_decode($result, true);
 
         if (isset($response['statusCode']) && $response['statusCode'] == 200) {
-            // Extract job role from response
+            // Extract job role and profile picture from response
             $jobRole = $response['jobRole'] ?? 'Unknown';
-            
+            $profilePicture = $response['profilePicture'] ?? 'default-profile.jpg'; // Default to 'default-profile.jpg' if no picture
 
             // Store in session
             $_SESSION['email'] = $email;
             $_SESSION['job_role'] = $jobRole;
-           
+            $_SESSION['profile_picture'] = $profilePicture; // Store profile picture
 
             // Redirect based on job role
             if ($jobRole === 'Admin') {
                 header("Location: admin.php");
                 exit();
-
             } elseif ($jobRole === 'Manager') {
                 header("Location: manager_home.php");
                 exit();
-                
-            } 
-
-            elseif ($jobRole === 'StockKeeper') {
+            } elseif ($jobRole === 'StockKeeper') {
                 header("Location: Stock_keeper.php");
                 exit();
-                
-            } 
-            
-            else {
-                header("Location: staffLogin.php");
+            } else {
+                header("Location: staff_home.php"); // Default to staff home if job role doesn't match
                 exit();
             }
         } else {
@@ -75,6 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

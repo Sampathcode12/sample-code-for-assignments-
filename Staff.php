@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'FIRSTNAME' => $_POST['FirstName'],
         'LASTNAME' => $_POST['LastName'],
         'EMAIL' => $_POST['Email'],
-        'PASSWORD' => password_hash($_POST['Password'], PASSWORD_BCRYPT),
+        'PASSWORD' => $_POST['Password'], 
         'ADDRESS' => $_POST['Address'],
         'PHONE_NUMBER' => $_POST['PhoneNumber'],
         'JOB_ROLE' => $_POST['JobRole'],

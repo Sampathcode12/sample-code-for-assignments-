@@ -1,6 +1,6 @@
 <?php
 
-include"Staff_header.php";
+// include"Staff_header.php";
 
 ?>
 

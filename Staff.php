@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Handle response
     if ($httpCode == 200) {
-        echo "<script>alert('Staff added successfully!'); window.location.href='staff_list.php';</script>";
+        echo "<script>alert('Staff added successfully!'); window.location.href='staffLogin.php';</script>";
     } else {
         $responseData = json_decode($response, true);
         $errorMsg = $responseData['StatusMessage'] ?? 'Unknown error occurred';
@@ -156,11 +156,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="mb-3">
                         <label for="JobRole" class="form-label">Job Role*</label>
                         <select class="form-select" id="JobRole" name="JobRole" required>
-                            <option value="">Select Job Role</option>
+                            <!-- <option value="">Select Job Role</option> -->
                             <option value="Manager">Manager</option>
                             <option value="Supervisor">Supervisor</option>
-                            <option value="Staff">Staff</option>
-                            <option value="Administrator">Administrator</option>
+                            <option value="Admin">Admin</option>
                         </select>
                     </div>
 

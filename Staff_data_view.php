@@ -23,10 +23,6 @@ $StaffData = fetchStaffData();
                 // Redirect to delete_staff.php with ID for deletion
                 window.location.href = "delete_staff.php?id=" + id;
             }
-            else if (confirm("Are you sure you want to Update this staff member?")) {
-                // Redirect to delete_staff.php with ID for deletion
-                window.location.href = "staff_update.php=" + id;
-            }
         }
 
         // Function to print the staff list
@@ -36,16 +32,6 @@ $StaffData = fetchStaffData();
             document.body.innerHTML = "<h2>Staff List</h2>" + printContents;
             window.print();
             document.body.innerHTML = originalContents;
-        }
-
-        // Function to preview profile image on file selection
-        function previewImage(input) {
-            const file = input.files[0];
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                document.getElementById('profilePreview').src = e.target.result;
-            };
-            reader.readAsDataURL(file);
         }
     </script>
 </head>
@@ -83,7 +69,7 @@ $StaffData = fetchStaffData();
                     <td>" . htmlspecialchars($Staff['phonE_NUMBER']) . "</td>
                     <td>" . htmlspecialchars($Staff['joB_ROLE']) . "</td>
                     <td>
-                        <a href='staff_update.php?id=" . htmlspecialchars($Staff['stafF_ID']) . "' class='update-btn'>Update</a>
+                        <a href='staffUpdate.php?staff_id=" . urlencode($Staff['stafF_ID']) . "' class='update-btn'>Update</a>
                         <button onclick='confirmDelete(" . htmlspecialchars($Staff['stafF_ID']) . ")' class='delete-btn'>Delete</button>
                     </td>
                 </tr>";

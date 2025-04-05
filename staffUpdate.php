@@ -140,7 +140,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="password" name="Password" value="<?php echo htmlspecialchars($Password); ?>" placeholder="Enter Password" required>
             <input type="text" name="Address" value="<?php echo htmlspecialchars($Address); ?>" placeholder="Enter Address" required>
             <input type="text" name="PhoneNumber" value="<?php echo htmlspecialchars($PhoneNumber); ?>" placeholder="Enter Phone Number" required>
-            <input type="text" name="JobRole" value="<?php echo htmlspecialchars($JoRole); ?>" placeholder="Enter Job Role" required>
+
+            <div class="mb-3">
+                        <label for="JobRole" class="form-label">Job Role*</label>
+                        <select class="form-select" id="JobRole" name="JobRole" required>
+                            <!-- <option value="">Select Job Role</option> -->
+                            <option value="Manager">Manager</option>
+                            <option value="Supervisor">Supervisor</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+
 
             <button type="submit">Update</button>
         </form>

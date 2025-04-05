@@ -1,3 +1,5 @@
+
+<!--  -->
 <?php
 $message = "";
 $statusColor = "red"; // Default error color
@@ -13,33 +15,68 @@ $JoRole = "";
 // Fetch staff data based on ID if available
 if (isset($_GET['staff_id']) && !empty($_GET['staff_id'])) {
     $StaffId = $_GET['staff_id'];
+   
+    // $searchTerm = $_GET['search'];
     echo"$StaffId";
 
-    // Fetch staff data from the API
-    $url = "http://localhost:5268/api/Staff/GetAllStaff/$StaffId"; // Replace with your actual API endpoint
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $response = curl_exec($ch);
-    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
-
-    if ($httpCode == 200) {
-        $staffData = json_decode($response, true);
-        if (isset($staffData['data'])) {
-            $staff = $staffData['data'];
-            $FirstName = $staff['firstname'];
-            $LastName = $staff['lastname'];
-            $Email = $staff['email'];
-            $Password = $staff['password']; // Be cautious with password
-            $Address = $staff['address'];
-            $PhoneNumber = $staff['phonE_NUMBER'];
-            $JoRole = $staff['joB_ROLE'];
-        } else {
-            $message = "Staff member not found.";
+    function searchStaff($StaffId ) {
+        $url = 'http://localhost:5268/api/Staff/SearchStaff?query=' . urlencode( $StaffId);
+        
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10); // Set timeout to avoid long waiting times
+    
+        $result = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        
+        if (curl_errno($ch)) {
+            $error = 'Error: ' . curl_error($ch);
+            curl_close($ch);
+            return ['error' => $error]; // Return cURL error
         }
-    } else {
-        $message = "Failed to fetch staff data.";
+    
+        curl_close($ch);
+        $response = json_decode($result, true);
+    
+        // Handle different response cases
+        if ($httpCode !== 200) {
+            return ['error' => "API request failed with status code: $httpCode"];
+        }
+    
+        if (!$response || !is_array($response) || empty($response)) {
+            return ['error' => 'No staff members found for the given search term.'];
+        }
+    
+        return ['data' => $response];
     }
+
+    $pharmacyData = searchStaff($StaffId);
+    if (isset($pharmacyData['error'])) {
+        echo "<tr><td colspan='8' class='error-msg'>{$pharmacyData['error']}</td></tr>";
+    } elseif (isset($pharmacyData['data'])) {
+        foreach ($pharmacyData['data'] as $staff) {
+
+            
+          
+                    ($staff['stafF_ID']);
+                    $FirstName =    ($staff['firstname']);
+                    $LastName = ($staff['lastname']);
+                    $Email =($staff['email']);
+                    $JoRole = ($staff['joB_ROLE']);
+                    $Address = ($staff['address']);
+                    $PhoneNumber =($staff['phonE_NUMBER']);
+                    // ($staff['password']);
+                    
+              
+
+
+        }
+    }
+    
+    
+    // else {
+    //     $message = "Failed to fetch staff data.";
+    // }
 }
 
 // Handle POST request for updating staff
@@ -133,11 +170,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <!-- Update Form -->
         <form method="POST" action="">
-            <input type="hidden" name="Staff_id" value="<?php echo htmlspecialchars($StaffId); ?>" required>
+            <input type="hidden" name="Staff_id" value="<?php echo htmlspecialchars($StaffId); ?>" placeholder="Enter ID" required>
             <input type="text" name="firstName" value="<?php echo htmlspecialchars($FirstName); ?>" placeholder="Enter First Name" required>
             <input type="text" name="LastName" value="<?php echo htmlspecialchars($LastName); ?>" placeholder="Enter Last Name" required>
             <input type="email" name="Email" value="<?php echo htmlspecialchars($Email); ?>" placeholder="Enter Email" required>
-            <input type="password" name="Password" value="<?php echo htmlspecialchars($Password); ?>" placeholder="Enter Password" required>
+            <input type="password" name="Password" value="<?php echo htmlspecialchars($Password); ?>" placeholder="Add new password" required>
             <input type="text" name="Address" value="<?php echo htmlspecialchars($Address); ?>" placeholder="Enter Address" required>
             <input type="text" name="PhoneNumber" value="<?php echo htmlspecialchars($PhoneNumber); ?>" placeholder="Enter Phone Number" required>
 

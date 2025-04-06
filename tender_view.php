@@ -31,6 +31,10 @@ $jobRole = $_SESSION['job_role'] ?? ''; // Get job role from session
         </tr>
     </thead>
     <tbody>
+
+<!-- <td><a href='{$Tender['description']}' target='_blank'>View PDF</a> | <a href='{$Tender['description']}' download>Download</a></td> -->
+
+
         <?php
         if (isset($TenderData['data'])) {
             foreach ($TenderData['data'] as $Tender) {
@@ -38,6 +42,8 @@ $jobRole = $_SESSION['job_role'] ?? ''; // Get job role from session
                     <td>{$Tender['tender_title']}</td>
                     <td>{$Tender['rFnumber']}</td>
                     <td>{$Tender['description']}</td>
+                   
+                           
                     <td>{$Tender['deadline']}</td>                         
                 </tr>";
             }
@@ -47,7 +53,6 @@ $jobRole = $_SESSION['job_role'] ?? ''; // Get job role from session
         ?>
     </tbody>
 </table>
-
 <div>
     <?php if ($jobRole !== 'Admin') : ?>  
         <button onclick="window.location.href='Apliy_Tender.php';">Apply</button>  <!-- Hide for Admin -->

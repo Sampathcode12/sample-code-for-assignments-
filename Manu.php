@@ -89,9 +89,10 @@
                 $imageSrc = $drug['imagePaths'][0];
             }
 
+            $encodedName = urlencode($name);
             echo "
             <div class='drug-card'>
-              <a href='RequestDrugs.php?drug_id={$id}&name=" . urlencode($name) . "&price={$price}'>
+              <a href='RequestDrugs.php?drug_id={$id}&name={$encodedName}&price={$price}'>
                 <div class='drug-image-wrapper'>
                   <img src='{$imageSrc}' alt='{$name}'>
                 </div>

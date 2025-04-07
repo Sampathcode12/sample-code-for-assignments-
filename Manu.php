@@ -57,12 +57,12 @@
     }
 
     .drug-label {
-      font-size: 14px;
+      font-size: 20px;
       font-weight: 500;
     }
 
     .availability {
-      font-size: 12px;
+      font-size: 20px;
       color: #888;
       margin-top: 4px;
     }

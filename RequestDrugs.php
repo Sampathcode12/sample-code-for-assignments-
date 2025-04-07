@@ -1,6 +1,15 @@
 <?php 
 session_start();
 
+
+// session_start();
+
+// Redirect to login if email session is not set
+if (!isset($_SESSION['Pharmacy_email'])) {
+    header("Location: PhamacyLogin.php"); // Change the filename if your login page has a different name
+    exit();
+}
+
 $responseMessage = "";
 
 // Get data from query string

@@ -143,9 +143,13 @@
 <body>
 
   <div class="top-bar">
-    <div>📞 011 1234567 | ✉️ info@mypharmacy.lk</div>
+  <div>
+  📞 <a href="tel:0111234567">011 1234567</a> | 
+  ✉️ <a href="mailto:info@mypharmacy.lk">info@mypharmacy.lk</a>
+</div>
+
     <div class="social-icons">
-      <a href="#">🌐</a>
+      <a href="https://unionchemistspharmacy.lk">🌐</a>
       <a href="#">📘</a>
       <a href="#">🐦</a>
       <a href="#">📷</a>
@@ -156,7 +160,7 @@
     <div class="logo"><img src="logo.png" alt="Pharmacy Logo"></div>
     <nav>
       <ul>
-        <li><a href="#">Home</a></li>
+        <li><a href="Manu.php">Home</a></li>
         <li><a href="#">About Us</a></li>
         <li><a href="#">Our Services</a></li>
         <li><a href="#">Products</a></li>
